@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLicenseTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLicenseTypeLabel_id}"/>
+                    <h:outputText value="#{licenseTypeController.selected.id}" title="#{bundle.ViewLicenseTypeTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseName}"/>
+                    <h:outputText value="#{licenseTypeController.selected.licenseName}" title="#{bundle.ViewLicenseTypeTitle_licenseName}"/>
+                    <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseSerial}"/>
+                    <h:outputText value="#{licenseTypeController.selected.licenseSerial}" title="#{bundle.ViewLicenseTypeTitle_licenseSerial}"/>
+                    <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseStart}"/>
+                    <h:outputText value="#{licenseTypeController.selected.licenseStart}" title="#{bundle.ViewLicenseTypeTitle_licenseStart}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseEnd}"/>
+                    <h:outputText value="#{licenseTypeController.selected.licenseEnd}" title="#{bundle.ViewLicenseTypeTitle_licenseEnd}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{licenseTypeController.destroyAndView}" value="#{bundle.ViewLicenseTypeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLicenseTypeEditLink}"/>
+                <br />
+                <h:commandLink action="#{licenseTypeController.prepareCreate}" value="#{bundle.ViewLicenseTypeCreateLink}" />
+                <br />
+                <h:commandLink action="#{licenseTypeController.prepareList}" value="#{bundle.ViewLicenseTypeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLicenseTypeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

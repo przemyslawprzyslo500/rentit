@@ -67,6 +67,10 @@ public class Equipment implements Serializable {
     public Equipment() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Equipment(Integer id) {
         this.id = id;
     }

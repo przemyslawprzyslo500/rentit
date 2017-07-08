@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLicenseTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLicenseTypeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{licenseTypeController.selected.id}" title="#{bundle.EditLicenseTypeTitle_id}" required="true" requiredMessage="#{bundle.EditLicenseTypeRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseName}" for="licenseName" />
+                    <h:inputText id="licenseName" value="#{licenseTypeController.selected.licenseName}" title="#{bundle.EditLicenseTypeTitle_licenseName}" />
+                    <h:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseSerial}" for="licenseSerial" />
+                    <h:inputText id="licenseSerial" value="#{licenseTypeController.selected.licenseSerial}" title="#{bundle.EditLicenseTypeTitle_licenseSerial}" />
+                    <h:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseStart}" for="licenseStart" />
+                    <h:inputText id="licenseStart" value="#{licenseTypeController.selected.licenseStart}" title="#{bundle.EditLicenseTypeTitle_licenseStart}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseEnd}" for="licenseEnd" />
+                    <h:inputText id="licenseEnd" value="#{licenseTypeController.selected.licenseEnd}" title="#{bundle.EditLicenseTypeTitle_licenseEnd}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{licenseTypeController.update}" value="#{bundle.EditLicenseTypeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLicenseTypeViewLink}"/>
+                <br />
+                <h:commandLink action="#{licenseTypeController.prepareList}" value="#{bundle.EditLicenseTypeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLicenseTypeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

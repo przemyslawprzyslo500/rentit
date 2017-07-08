@@ -104,33 +104,13 @@ public class Reserv implements Serializable {
         return description;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
-
-//    public Integer getEquipmentId() {
-//        return equipmentId;
-//    }
-
-//    public void setEquipmentId(Integer equipmentId) {
-//        this.equipmentId = equipmentId;
-//    }
-
-//    public Account getWhoReserved() {
-//        return whoReserved;
-//    }
-//
-//    public void setWhoReserved(Account whoReserved) {
-//        this.whoReserved = whoReserved;
-//    }
-//
-//    public Account getWhoAcceptReservation() {
-//        return whoAcceptReservation;
-//    }
-//
-//    public void setWhoAcceptReservation(Account whoAcceptReservation) {
-//        this.whoAcceptReservation = whoAcceptReservation;
-//    }
 
     public Date getReservationStart() {
         return reservationStart;

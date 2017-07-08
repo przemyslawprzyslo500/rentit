@@ -84,6 +84,10 @@ public class Account implements Serializable {
         this.id = id;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Account(String login, String name, String surname) {
         this.login = login;
         this.name = name;

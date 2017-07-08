@@ -72,9 +72,6 @@ public class Account implements Serializable {
     private boolean active;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
-    private Collection<AccountFunction> accountFunctionCollection;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Collection<Reserv> reservCollection;
 
     public Account() {
@@ -164,15 +161,6 @@ public class Account implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    @XmlTransient
-    public Collection<AccountFunction> getAccountFunctionCollection() {
-        return accountFunctionCollection;
-    }
-
-    public void setAccountFunctionCollection(Collection<AccountFunction> accountFunctionCollection) {
-        this.accountFunctionCollection = accountFunctionCollection;
     }
 
     @XmlTransient

@@ -48,10 +48,6 @@ public class Equipment implements Serializable {
     @Column(name = "RENT_PERMISSION")
     private Character rentPermission;
     
-    @JoinColumn(name = "EQUIPMENT_STATUS_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private EquipmentStatus equipmentStatusId;
-    
     @JoinColumn(name = "LICENSE_TYPE_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private LicenseType licenseTypeId;
@@ -105,14 +101,6 @@ public class Equipment implements Serializable {
 
     public void setRentPermission(Character rentPermission) {
         this.rentPermission = rentPermission;
-    }
-
-    public EquipmentStatus getEquipmentStatusId() {
-        return equipmentStatusId;
-    }
-
-    public void setEquipmentStatusId(EquipmentStatus equipmentStatusId) {
-        this.equipmentStatusId = equipmentStatusId;
     }
 
     public LicenseType getLicenseTypeId() {

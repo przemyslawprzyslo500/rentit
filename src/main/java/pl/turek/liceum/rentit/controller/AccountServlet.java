@@ -31,12 +31,29 @@ public class AccountServlet extends HttpServlet {
         
         String action = request.getParameter("action");
         String accountIdStr = request.getParameter("accountId");
-        int accountId = accountIdStr.equals("") ? 0 : Integer.parseInt(accountIdStr);
+        int accountId=0;
+        if (accountIdStr!=null && !accountIdStr.equals(""))
+            accountId=Integer.parseInt(accountIdStr);
+        //int accountId = accountIdStr.equals("") ? 0 : Integer.parseInt(accountIdStr);
+        
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String login = request.getParameter("login");
         
         Account account = new Account(login, name, surname);
+        
+        if("Add".equalsIgnoreCase(action)){
+            accountDao.addAccount(account);
+        }else if ("Edit".equalsIgnoreCase(action)){
+            accountDao.editAccount(account);
+        }else if ("Delete".equalsIgnoreCase(action)){
+            accountDao.deleteAccount(accountId);
+        }else if ("Search".equalsIgnoreCase(action)){
+            account = accountDao.getAccount(accountId);
+        }
+        request.setAttribute("account", account);
+        request.setAttribute("allAccount", accountDao.getAllAccounts());
+        request.getRequestDispatcher("accountInfo.jsp").forward(request, response);
     }
 
     @Override

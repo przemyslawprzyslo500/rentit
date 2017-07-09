@@ -1,29 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
-    </h:head>
-    <h:body>
-        <p:layout fullPage="true">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    <BR /><center><h2>Wypożyczalnia sprzętu IT</h2></center>
+                    Header
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    <BR /><center><h5>  Przemysław Przysło
-                    <BR />              Tel: 602 13 85 45
-                    <BR />              pprzysloturek@gmail.com
-                     </h5></center>
+                    Footer
                 </p:layoutUnit>
-                <p:layoutUnit position="west" size="200" header="MENU" collapsible="true">
-                    <h:form>   
+                <p:layoutUnit position="west" size="175" header="MENU" collapsible="true">
                     <p:menu>
-                        <p:menuitem outcome="/index.xhtml" value="HOME" />
                         <p:submenu label="Użytkownicy">
                             <p:menuitem outcome="/account/List" value="Lista użytkowników" />
                         </p:submenu>
@@ -35,11 +34,12 @@
                             <p:menuitem outcome="/reserv/List" value="Show All Reserv Items"/>
                         </p:submenu>
                     </p:menu>
-                        </h:form> 
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    <ui:insert name="body">Put default content here, if any.</ui:insert>
+                    Welcome to PrimeFaces - Content
                 </p:layoutUnit>
             </p:layout>
-    </h:body>
+        </h:body>
+    </f:view>
 </html>
+

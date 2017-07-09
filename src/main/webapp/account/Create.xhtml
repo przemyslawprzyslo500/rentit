@@ -16,9 +16,10 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateAccountLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{accountController.selected.id}" title="#{bundle.CreateAccountTitle_id}" required="true" requiredMessage="#{bundle.CreateAccountRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateAccountLabel_accountid}" for="accountid" />
-                    <h:inputText id="accountid" value="#{accountController.selected.accountid}" title="#{bundle.CreateAccountTitle_accountid}" />
+                    <!--<h:inputText id="id" value="#{accountController.selected.id}" title="#{bundle.CreateAccountTitle_id}" required="true" requiredMessage="#{bundle.CreateAccountRequiredMessage_id}"/>-->
+                    <h:inputText id="id" value="#{accountController.selected.id}" title="#{bundle.CreateAccountTitle_id}" requiredMessage="#{bundle.CreateAccountRequiredMessage_id}"/>
+<!--                    <h:outputLabel value="#{bundle.CreateAccountLabel_accountid}" for="accountid" />
+                    <h:inputText id="accountid" value="#{accountController.selected.accountid}" title="#{bundle.CreateAccountTitle_accountid}" />-->
                     <h:outputLabel value="#{bundle.CreateAccountLabel_login}" for="login" />
                     <h:inputText id="login" value="#{accountController.selected.login}" title="#{bundle.CreateAccountTitle_login}" />
                     <h:outputLabel value="#{bundle.CreateAccountLabel_password}" for="password" />
@@ -27,8 +28,22 @@
                     <h:inputText id="name" value="#{accountController.selected.name}" title="#{bundle.CreateAccountTitle_name}" />
                     <h:outputLabel value="#{bundle.CreateAccountLabel_surname}" for="surname" />
                     <h:inputText id="surname" value="#{accountController.selected.surname}" title="#{bundle.CreateAccountTitle_surname}" />
-                    <h:outputLabel value="#{bundle.CreateAccountLabel_accountFunction}" for="accountFunction" />
-                    <h:inputText id="accountFunction" value="#{accountController.selected.accountFunction}" title="#{bundle.CreateAccountTitle_accountFunction}" />
+                    
+<!--                    <h:outputLabel value="#{bundle.CreateAccountLabel_accountFunction}" for="accountFunction" />
+                    <h:inputText id="accountFunction" value="#{accountController.selected.accountFunction}" title="#{bundle.CreateAccountTitle_accountFunction}" />-->
+                    
+                    <!--<h:outputLabel value="#{bundle.CreateAccountLabel_accountFunction}" for="accountFunction" />-->
+                    <h:outputLabel value="accountFunction" />
+                    <h:selectOneMenu  value="#{accountController.items}" required="true" >
+                        <!--<h:selectOneMenu value="#{accountController.prepareList}" title="#{bundle.CreateAccountTitle_accountFunction}" />-->
+                    </h:selectOneMenu>
+                                     
+                    <!--                
+                    <h:outputLabel value="Nazwa kategorii *:" />
+                    <h:selectOneMenu  value="#{autoManageBean.auto.category}" required="true" >
+                    <f:selectItems value="#{autoManageBean.categoryNameList}" />
+                    </h:selectOneMenu>-->
+                    
                     <h:outputLabel value="#{bundle.CreateAccountLabel_email}" for="email" />
                     <h:inputText id="email" value="#{accountController.selected.email}" title="#{bundle.CreateAccountTitle_email}" />
                     <h:outputLabel value="#{bundle.CreateAccountLabel_phone}" for="phone" />

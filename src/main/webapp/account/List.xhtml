@@ -10,6 +10,7 @@
             <h:outputText value="#{bundle.ListAccountTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h3>Lista użytkowników</h3>
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -26,12 +27,12 @@
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </h:column>
-                        <h:column>
+<!--                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAccountTitle_accountid}"/>
                             </f:facet>
                             <h:outputText value="#{item.accountid}"/>
-                        </h:column>
+                        </h:column>-->
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAccountTitle_login}"/>

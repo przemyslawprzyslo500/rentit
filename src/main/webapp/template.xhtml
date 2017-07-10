@@ -28,15 +28,23 @@
                     <h:form>   
                     <p:menu>
                         <p:menuitem outcome="/index.xhtml" value="HOME" />
-                        <p:submenu label="Użytkownicy">
-                            <p:menuitem outcome="/account/List" value="Lista użytkowników" />
+                        <p:submenu label="Users">
+                            <p:menuitem outcome="/account/List" value="Users list" />
+                            <p:menuitem outcome="/account/Create" value="Add user" />
+                            <p:menuitem outcome="/account/Find" value="Find user" />
                         </p:submenu>
-                        <p:submenu label="Sprzęt IT">
+                        <p:submenu label="IT Equipment">
                             <p:menuitem outcome="/equipment/List" value="Show All Equipment Items" />
+                            <p:menuitem outcome="/equipment/Create" value="Create Equipment Items" />
                             <p:menuitem outcome="/licenseType/List" value="Show All LicenseType Items"/>
+                            <p:menuitem outcome="/licenseType/Create" value="Add LicenseType Items"/>
                         </p:submenu>
-                        <p:submenu label="Rezerwacje">
-                            <p:menuitem outcome="/reserv/List" value="Show All Reserv Items"/>
+                        <p:submenu label="Reservations">
+                            <p:menuitem outcome="/reserv/List" value="Show All Reservations"/>
+                            <p:menuitem outcome="/reserv/Create" value="Add Reservation Items"/>
+                            <p:menuitem outcome="/usePlace/List" value="Use Plase List"/>
+                            <p:menuitem outcome="/usePlace/Create" value="Add use place"/>
+                            
                         </p:submenu>
                     </p:menu>
                         </h:form> 

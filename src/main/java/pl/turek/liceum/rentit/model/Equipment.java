@@ -46,7 +46,7 @@ public class Equipment implements Serializable {
     private String type;
     
     @Column(name = "RENT_PERMISSION")
-    private Character rentPermission;
+    private boolean rentPermission;
     
     @JoinColumn(name = "LICENSE_TYPE_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
@@ -95,11 +95,11 @@ public class Equipment implements Serializable {
         this.type = type;
     }
 
-    public Character getRentPermission() {
+    public boolean getRentPermission() {
         return rentPermission;
     }
 
-    public void setRentPermission(Character rentPermission) {
+    public void setRentPermission(boolean rentPermission) {
         this.rentPermission = rentPermission;
     }
 

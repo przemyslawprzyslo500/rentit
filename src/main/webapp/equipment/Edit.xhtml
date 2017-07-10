@@ -15,20 +15,20 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditEquipmentLabel_id}" for="id" />
+<!--                    <h:outputLabel value="#{bundle.EditEquipmentLabel_id}" for="id" />
                     <h:inputText id="id" value="#{equipmentController.selected.id}" title="#{bundle.EditEquipmentTitle_id}" required="true" requiredMessage="#{bundle.EditEquipmentRequiredMessage_id}"/>
                     <h:outputLabel value="#{bundle.EditEquipmentLabel_equipmentId}" for="equipmentId" />
-                    <h:inputText id="equipmentId" value="#{equipmentController.selected.equipmentId}" title="#{bundle.EditEquipmentTitle_equipmentId}" />
+                    <h:inputText id="equipmentId" value="#{equipmentController.selected.equipmentId}" title="#{bundle.EditEquipmentTitle_equipmentId}" />-->
                     <h:outputLabel value="#{bundle.EditEquipmentLabel_name}" for="name" />
                     <h:inputText id="name" value="#{equipmentController.selected.name}" title="#{bundle.EditEquipmentTitle_name}" />
                     <h:outputLabel value="#{bundle.EditEquipmentLabel_type}" for="type" />
                     <h:inputText id="type" value="#{equipmentController.selected.type}" title="#{bundle.EditEquipmentTitle_type}" />
                     <h:outputLabel value="#{bundle.EditEquipmentLabel_rentPermission}" for="rentPermission" />
                     <h:inputText id="rentPermission" value="#{equipmentController.selected.rentPermission}" title="#{bundle.EditEquipmentTitle_rentPermission}" />
-                    <h:outputLabel value="#{bundle.EditEquipmentLabel_equipmentStatusId}" for="equipmentStatusId" />
+<!--                    <h:outputLabel value="#{bundle.EditEquipmentLabel_equipmentStatusId}" for="equipmentStatusId" />
                     <h:selectOneMenu id="equipmentStatusId" value="#{equipmentController.selected.equipmentStatusId}" title="#{bundle.EditEquipmentTitle_equipmentStatusId}" required="true" requiredMessage="#{bundle.EditEquipmentRequiredMessage_equipmentStatusId}">
                         <f:selectItems value="#{equipmentStatusController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </h:selectOneMenu>-->
                     <h:outputLabel value="#{bundle.EditEquipmentLabel_licenseTypeId}" for="licenseTypeId" />
                     <h:selectOneMenu id="licenseTypeId" value="#{equipmentController.selected.licenseTypeId}" title="#{bundle.EditEquipmentTitle_licenseTypeId}" required="true" requiredMessage="#{bundle.EditEquipmentRequiredMessage_licenseTypeId}">
                         <f:selectItems value="#{licenseTypeController.itemsAvailableSelectOne}"/>

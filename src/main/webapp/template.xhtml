@@ -12,7 +12,11 @@
     <h:body>
         <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    <BR /><center><h2>Wypożyczalnia sprzętu IT</h2></center>
+                    <BR/><center><h2>Wypożyczalnia sprzętu IT</h2>
+                    AKTUALNA DATA I GODZINA: 
+                    <p:outputLabel value="#{now}">
+                    </p:outputLabel> 
+                    </center>    
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     <BR /><center><h5>  Przemysław Przysło

@@ -50,7 +50,22 @@
                     <h:outputText value="#{item.id}"/>
                 </p:column>
 
-
+               <p:column sortBy="#{item.licenseName}" filterBy="#{item.licenseName}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseName}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.licenseName}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.licenseStart}" filterBy="#{item.licenseStart}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseStart}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.licenseStart}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                
                 <p:column sortBy="#{item.licenseEnd}" filterBy="#{item.licenseEnd}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseEnd}"/>
@@ -60,30 +75,11 @@
                     </h:outputText>
                 </p:column>
 
-
-                <p:column sortBy="#{item.licenseName}" filterBy="#{item.licenseName}">
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseName}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.licenseName}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.licenseSerial}" filterBy="#{item.licenseSerial}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseSerial}"/>
                     </f:facet>
                     <h:outputText value="#{item.licenseSerial}"/>
-                </p:column>
-
-
-                <p:column sortBy="#{item.licenseStart}" filterBy="#{item.licenseStart}">
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseStart}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.licenseStart}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
                 </p:column>
 
 

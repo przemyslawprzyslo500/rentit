@@ -52,7 +52,13 @@
                     <h:outputText value="#{item.id}"/>
                 </p:column>
 
-
+                <p:column sortBy="#{item.accountId.name}" filterBy="#{item.accountId.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_accountId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accountId.name} #{item.accountId.surname} "/>
+                </p:column>
+                
                 <p:column sortBy="#{item.description}" filterBy="#{item.description}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListReservTitle_description}"/>
@@ -60,18 +66,7 @@
                     <h:outputText value="#{item.description}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.reservationEnd}" filterBy="#{item.reservationEnd}">
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationEnd}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.reservationEnd}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                </p:column>
-
-
-                <p:column sortBy="#{item.reservationMadeDate}" filterBy="#{item.reservationMadeDate}">
+               <p:column sortBy="#{item.reservationMadeDate}" filterBy="#{item.reservationMadeDate}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListReservTitle_reservationMadeDate}"/>
                     </f:facet>
@@ -79,8 +74,7 @@
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
-
-
+                
                 <p:column sortBy="#{item.reservationStart}" filterBy="#{item.reservationStart}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListReservTitle_reservationStart}"/>
@@ -89,13 +83,14 @@
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
-
-
-                <p:column sortBy="#{item.accountId.name}" filterBy="#{item.accountId.name}">
+                
+                <p:column sortBy="#{item.reservationEnd}" filterBy="#{item.reservationEnd}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_accountId}"/>
+                        <h:outputText value="#{bundle.ListReservTitle_reservationEnd}"/>
                     </f:facet>
-                    <h:outputText value="#{item.accountId.name} #{item.accountId.surname} "/>
+                    <h:outputText value="#{item.reservationEnd}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
                 </p:column>
 
                 <ui:remove>

@@ -32,6 +32,7 @@
                         <p:outputLabel value="#{bundle.CreateReservLabel_reservationStart}" for="reservationStart" />
                         <p:calendar id="reservationStart" pattern="MM/dd/yyyy" required="true" requiredMessage="#{bundle.CreateReservRequiredMessage_date}" value="#{reservController.selected.reservationStart}" title="#{bundle.CreateReservTitle_reservationStart}"  showOn="button" />
                         <p:outputLabel value="#{bundle.CreateReservLabel_accountId}" for="accountId" />
+                        
                         <p:selectOneMenu id="accountId" value="#{reservController.selected.accountId}"  converter="accountConverter">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{accountController.items}"

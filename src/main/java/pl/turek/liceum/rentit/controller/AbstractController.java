@@ -176,7 +176,7 @@ public abstract class AbstractController<T> implements Serializable {
      * data layer
      */
     public void save(ActionEvent event) {
-        String msg = ResourceBundle.getBundle("/Bundle").getString(itemClass.getSimpleName() + "Updated");
+        String msg = ResourceBundle.getBundle("/MyBundle").getString(itemClass.getSimpleName() + "Updated");
         persist(PersistAction.UPDATE, msg);
 
         if (!isValidationFailed()) {
@@ -204,7 +204,7 @@ public abstract class AbstractController<T> implements Serializable {
      * the data layer
      */
     public void saveNew(ActionEvent event) {
-        String msg = ResourceBundle.getBundle("/Bundle").getString(itemClass.getSimpleName() + "Created");
+        String msg = ResourceBundle.getBundle("/MyBundle").getString(itemClass.getSimpleName() + "Created");
         persist(PersistAction.CREATE, msg);
         if (!isValidationFailed()) {
             items = null; // Invalidate list of items to trigger re-query.
@@ -219,7 +219,7 @@ public abstract class AbstractController<T> implements Serializable {
      * the data layer
      */
     public void delete(ActionEvent event) {
-        String msg = ResourceBundle.getBundle("/Bundle").getString(itemClass.getSimpleName() + "Deleted");
+        String msg = ResourceBundle.getBundle("/MyBundle").getString(itemClass.getSimpleName() + "Deleted");
         persist(PersistAction.DELETE, msg);
         if (!isValidationFailed()) {
             selected = null; // Remove selection
@@ -268,7 +268,7 @@ public abstract class AbstractController<T> implements Serializable {
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/MyBundle").getString("PersistenceErrorOccured"));
             }
         }
     }

@@ -16,6 +16,8 @@ import javax.inject.Inject;
 public class ReservController extends AbstractController<Reserv> {
 
     @Inject
+    private EquipmentController equipmentIdController;
+    @Inject
     private ReservStatusController reservStatusIdController;
     @Inject
     private MobilePageController mobilePageController;
@@ -32,6 +34,7 @@ public class ReservController extends AbstractController<Reserv> {
      * Resets the "selected" attribute of any parent Entity controllers.
      */
     public void resetParents() {
+        equipmentIdController.setSelected(null);
         reservStatusIdController.setSelected(null);
     }
 
@@ -41,6 +44,19 @@ public class ReservController extends AbstractController<Reserv> {
     @Override
     protected void setChildrenEmptyFlags() {
         this.setIsEquipmentCollectionEmpty();
+    }
+
+    /**
+     * Sets the "selected" attribute of the Equipment controller in order to
+     * display its data in its View dialog.
+     *
+     * @param event Event object for the widget that triggered an action
+     */
+    public void prepareEquipmentId(ActionEvent event) {
+        Reserv selected = this.getSelected();
+        if (selected != null && equipmentIdController.getSelected() == null) {
+            equipmentIdController.setSelected(selected.getEquipmentId());
+        }
     }
 
     public boolean getIsEquipmentCollectionEmpty() {

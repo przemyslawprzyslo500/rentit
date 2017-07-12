@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "RESERV")
-@XmlRootElement
+//@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Reserv.findAll", query = "SELECT r FROM Reserv r")})
 @TableGenerator(name = "ReservIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Reserv", initialValue=10)
@@ -80,6 +80,18 @@ public class Reserv implements Serializable {
     @ManyToOne(optional = false)
     private ReservStatus reservStatusId;
 
+    @JoinColumn(name = "EQUIPMENT_ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Equipment equipmentId;
+
+    public Equipment getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(Equipment equipmentId) {
+        this.equipmentId = equipmentId;
+    }
+    
     public Reserv() {
     }
 

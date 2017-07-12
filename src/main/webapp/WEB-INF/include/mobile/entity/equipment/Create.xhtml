@@ -8,9 +8,9 @@
                 xmlns:pm="http://primefaces.org/mobile">
 
     <pm:page id="EquipmentCreatePage" lazy="true">
-        <pm:header title="#{bundle.CreateEquipmentTitle}">
+        <pm:header title="#{myBundle.CreateEquipmentTitle}">
             <h:form>
-                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:EquipmentListPage')}"/>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:EquipmentListPage')}"/>
             </h:form>
         </pm:header>
 
@@ -22,29 +22,29 @@
                     <p:outputPanel>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.CreateEquipmentLabel_equipmentId}" for="equipmentId" />
-                            <p:inputText id="equipmentId" value="#{equipmentController.selected.equipmentId}" title="#{bundle.CreateEquipmentTitle_equipmentId}"/>
+                            <p:outputLabel value="#{myBundle.CreateEquipmentLabel_equipmentId}" for="equipmentId" />
+                            <p:inputText id="equipmentId" value="#{equipmentController.selected.equipmentId}" title="#{myBundle.CreateEquipmentTitle_equipmentId}"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.CreateEquipmentLabel_name}" for="name" />
-                            <p:inputText id="name" value="#{equipmentController.selected.name}" title="#{bundle.CreateEquipmentTitle_name}" size="150" maxlength="150"/>
+                            <p:outputLabel value="#{myBundle.CreateEquipmentLabel_name}" for="name" />
+                            <p:inputText id="name" value="#{equipmentController.selected.name}" title="#{myBundle.CreateEquipmentTitle_name}" size="150" maxlength="150"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.CreateEquipmentLabel_type}" for="type" />
-                            <p:inputText id="type" value="#{equipmentController.selected.type}" title="#{bundle.CreateEquipmentTitle_type}" size="10" maxlength="10"/>
+                            <p:outputLabel value="#{myBundle.CreateEquipmentLabel_type}" for="type" />
+                            <p:inputText id="type" value="#{equipmentController.selected.type}" title="#{myBundle.CreateEquipmentTitle_type}" size="10" maxlength="10"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.CreateEquipmentLabel_rentPermission}" for="rentPermission" />
+                            <p:outputLabel value="#{myBundle.CreateEquipmentLabel_rentPermission}" for="rentPermission" />
                             <p:selectBooleanCheckbox id="rentPermission" value="#{equipmentController.selected.rentPermission}" />
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.CreateEquipmentLabel_licenseTypeId}" for="licenseTypeId" />
-                            <p:selectOneMenu id="licenseTypeId" value="#{equipmentController.selected.licenseTypeId}" required="true" requiredMessage="#{bundle.CreateEquipmentRequiredMessage_licenseTypeId}" converter="licenseTypeConverter">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <p:outputLabel value="#{myBundle.CreateEquipmentLabel_licenseTypeId}" for="licenseTypeId" />
+                            <p:selectOneMenu id="licenseTypeId" value="#{equipmentController.selected.licenseTypeId}" required="true" requiredMessage="#{myBundle.CreateEquipmentRequiredMessage_licenseTypeId}" converter="licenseTypeConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{licenseTypeController.items}"
                                                var="licenseTypeIdItem"
                                                itemValue="#{licenseTypeIdItem}"
@@ -55,9 +55,9 @@
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.CreateEquipmentLabel_reservationReservationId}" for="reservationReservationId" />
-                            <p:selectOneMenu id="reservationReservationId" value="#{equipmentController.selected.reservationReservationId}" required="true" requiredMessage="#{bundle.CreateEquipmentRequiredMessage_reservationReservationId}" converter="reservConverter">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <p:outputLabel value="#{myBundle.CreateEquipmentLabel_reservationReservationId}" for="reservationReservationId" />
+                            <p:selectOneMenu id="reservationReservationId" value="#{equipmentController.selected.reservationReservationId}" required="true" requiredMessage="#{myBundle.CreateEquipmentRequiredMessage_reservationReservationId}" converter="reservConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{reservController.items}"
                                                var="reservationReservationIdItem"
                                                itemValue="#{reservationReservationIdItem}"
@@ -68,9 +68,9 @@
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.CreateEquipmentLabel_usePlaceId}" for="usePlaceId" />
-                            <p:selectOneMenu id="usePlaceId" value="#{equipmentController.selected.usePlaceId}" required="true" requiredMessage="#{bundle.CreateEquipmentRequiredMessage_usePlaceId}" converter="usePlaceConverter">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <p:outputLabel value="#{myBundle.CreateEquipmentLabel_usePlaceId}" for="usePlaceId" />
+                            <p:selectOneMenu id="usePlaceId" value="#{equipmentController.selected.usePlaceId}" required="true" requiredMessage="#{myBundle.CreateEquipmentRequiredMessage_usePlaceId}" converter="usePlaceConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{usePlaceController.items}"
                                                var="usePlaceIdItem"
                                                itemValue="#{usePlaceIdItem}"
@@ -80,8 +80,8 @@
                             </p:selectOneMenu>
                         </pm:field>
                     </p:outputPanel>
-                    <p:commandButton actionListener="#{equipmentController.saveNew}" value="#{bundle.Save}" update="display,:EquipmentListPage:EquipmentListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:EquipmentListPage')}">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{equipmentController.saveNew}" value="#{myBundle.Save}" update="display,:EquipmentListPage:EquipmentListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:EquipmentListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
                 </h:panelGroup>

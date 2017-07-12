@@ -8,9 +8,9 @@
                 xmlns:pm="http://primefaces.org/mobile">
 
     <pm:page id="ReservEditPage" lazy="true">
-        <pm:header title="#{bundle.EditReservTitle}">
+        <pm:header title="#{myBundle.EditReservTitle}">
             <h:form>
-                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ReservListPage')}"/>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ReservListPage')}"/>
             </h:form>
         </pm:header>
 
@@ -22,44 +22,57 @@
                     <p:outputPanel rendered="#{reservController.selected != null}">
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.EditReservLabel_reservationId}" for="reservationId" />
-                            <p:inputText id="reservationId" value="#{reservController.selected.reservationId}" title="#{bundle.EditReservTitle_reservationId}"/>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_equipmentId}" for="equipmentId" />
+                            <p:selectOneMenu id="equipmentId" value="#{reservController.selected.equipmentId}" required="true" requiredMessage="#{myBundle.EditReservRequiredMessage_equipmentId}" converter="equipmentConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{equipmentController.items}"
+                                               var="equipmentIdItem"
+                                               itemValue="#{equipmentIdItem}"
+                                               itemLabel="#{equipmentIdItem.name.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.EditReservLabel_reservationMadeDate}" for="reservationMadeDate" />
-                            <p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationMadeDate}" title="#{bundle.EditReservTitle_reservationMadeDate}"  showOn="button"/>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_reservationId}" for="reservationId" />
+                            <p:inputText id="reservationId" value="#{reservController.selected.reservationId}" title="#{myBundle.EditReservTitle_reservationId}"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.EditReservLabel_description}" for="description" />
-                            <p:inputText id="description" value="#{reservController.selected.description}" title="#{bundle.EditReservTitle_description}" size="255" maxlength="255"/>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_reservationMadeDate}" for="reservationMadeDate" />
+                            <p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationMadeDate}" title="#{myBundle.EditReservTitle_reservationMadeDate}"  showOn="button"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.EditReservLabel_id}"/>
-                            <h:outputText value="#{reservController.selected.id}" title="#{bundle.EditReservTitle_id}"/>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_description}" for="description" />
+                            <p:inputText id="description" value="#{reservController.selected.description}" title="#{myBundle.EditReservTitle_description}" size="255" maxlength="255"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.EditReservLabel_reservationStart}" for="reservationStart" />
-                            <p:calendar id="reservationStart" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationStart}" title="#{bundle.EditReservTitle_reservationStart}"  showOn="button"/>
+                            <h:outputText value="#{myBundle.EditReservLabel_id}"/>
+                            <h:outputText value="#{reservController.selected.id}" title="#{myBundle.EditReservTitle_id}"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.EditReservLabel_reservationEnd}" for="reservationEnd" />
-                            <p:calendar id="reservationEnd" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationEnd}" title="#{bundle.EditReservTitle_reservationEnd}"  showOn="button"/>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_reservationStart}" for="reservationStart" />
+                            <p:calendar id="reservationStart" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationStart}" title="#{myBundle.EditReservTitle_reservationStart}"  showOn="button"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.EditReservLabel_accountAccountid}" for="accountAccountid" />
-                            <p:inputText id="accountAccountid" value="#{reservController.selected.accountAccountid}" title="#{bundle.EditReservTitle_accountAccountid}"/>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_reservationEnd}" for="reservationEnd" />
+                            <p:calendar id="reservationEnd" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationEnd}" title="#{myBundle.EditReservTitle_reservationEnd}"  showOn="button"/>
                         </pm:field>
 
                         <pm:field>
-                            <p:outputLabel value="#{bundle.EditReservLabel_reservStatusId}" for="reservStatusId" />
-                            <p:selectOneMenu id="reservStatusId" value="#{reservController.selected.reservStatusId}" required="true" requiredMessage="#{bundle.EditReservRequiredMessage_reservStatusId}" converter="reservStatusConverter">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_accountAccountid}" for="accountAccountid" />
+                            <p:inputText id="accountAccountid" value="#{reservController.selected.accountAccountid}" title="#{myBundle.EditReservTitle_accountAccountid}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditReservLabel_reservStatusId}" for="reservStatusId" />
+                            <p:selectOneMenu id="reservStatusId" value="#{reservController.selected.reservStatusId}" required="true" requiredMessage="#{myBundle.EditReservRequiredMessage_reservStatusId}" converter="reservStatusConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{reservStatusController.items}"
                                                var="reservStatusIdItem"
                                                itemValue="#{reservStatusIdItem}"
@@ -69,8 +82,8 @@
                             </p:selectOneMenu>
                         </pm:field>
                     </p:outputPanel>
-                    <p:commandButton actionListener="#{reservController.save}" value="#{bundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:ReservListPage:ReservListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:ReservListPage')}">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{reservController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:ReservListPage:ReservListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:ReservListPage')}">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
                 </h:panelGroup>

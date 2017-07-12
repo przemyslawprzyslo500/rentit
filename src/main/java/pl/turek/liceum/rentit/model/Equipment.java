@@ -6,7 +6,9 @@
 package pl.turek.liceum.rentit.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
@@ -65,6 +68,9 @@ public class Equipment implements Serializable {
     @JoinColumn(name = "USE_PLACE_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private UsePlace usePlaceId;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "equipmentId")
+    private Collection<Reserv> reservCollection;
 
     public Equipment() {
     }

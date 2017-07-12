@@ -8,15 +8,16 @@
 
     <h:form id="ReservListForm">
 
-        <p:panel header="#{bundle.ListReservTitle}">
+        <p:panel header="#{myBundle.ListReservTitle}">
             <p:contextMenu id="ReservDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{bundle.Create}" onclick="document.getElementById('ReservListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{bundle.View}" onclick="document.getElementById('ReservListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{bundle.Edit}" onclick="document.getElementById('ReservListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{bundle.Delete}" onclick="document.getElementById('ReservListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ReservListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ReservListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ReservListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ReservListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{bundle.ReservMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{reservController.navigateEquipmentCollection}" disabled="#{reservController.isEquipmentCollectionEmpty}" ajax="false"/>  
-                <p:menuitem value="#{bundle.ReservMenuItem_reservStatusId}" icon="ui-icon-search"  actionListener="#{reservController.prepareReservStatusId}" update=":ReservStatusViewForm" oncomplete="PF('ReservStatusViewDialog').show()" disabled="#{empty reservController.selected.reservStatusId}"/>  
+                <p:menuitem value="#{myBundle.ReservMenuItem_equipmentId}" icon="ui-icon-search"  actionListener="#{reservController.prepareEquipmentId}" update=":EquipmentViewForm" oncomplete="PF('EquipmentViewDialog').show()" disabled="#{empty reservController.selected.equipmentId}"/>  
+                <p:menuitem value="#{myBundle.ReservMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{reservController.navigateEquipmentCollection}" disabled="#{reservController.isEquipmentCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ReservMenuItem_reservStatusId}" icon="ui-icon-search"  actionListener="#{reservController.prepareReservStatusId}" update=":ReservStatusViewForm" oncomplete="PF('ReservStatusViewDialog').show()" disabled="#{empty reservController.selected.reservStatusId}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{reservController.items}"
@@ -44,9 +45,17 @@
                 <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{reservController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('ReservListForm:viewButton').click();"/>
 
+                <p:column sortBy="#{item.equipmentId.name}" filterBy="#{item.equipmentId.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListReservTitle_equipmentId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.equipmentId.name}"/>
+                </p:column>
+
+
                 <p:column sortBy="#{item.reservationId}" filterBy="#{item.reservationId}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationId}"/>
+                        <h:outputText value="#{myBundle.ListReservTitle_reservationId}"/>
                     </f:facet>
                     <h:outputText value="#{item.reservationId}"/>
                 </p:column>
@@ -54,7 +63,7 @@
 
                 <p:column sortBy="#{item.reservationMadeDate}" filterBy="#{item.reservationMadeDate}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationMadeDate}"/>
+                        <h:outputText value="#{myBundle.ListReservTitle_reservationMadeDate}"/>
                     </f:facet>
                     <h:outputText value="#{item.reservationMadeDate}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -64,7 +73,7 @@
 
                 <p:column sortBy="#{item.description}" filterBy="#{item.description}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_description}"/>
+                        <h:outputText value="#{myBundle.ListReservTitle_description}"/>
                     </f:facet>
                     <h:outputText value="#{item.description}"/>
                 </p:column>
@@ -72,7 +81,7 @@
 
                 <p:column sortBy="#{item.id}" filterBy="#{item.id}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_id}"/>
+                        <h:outputText value="#{myBundle.ListReservTitle_id}"/>
                     </f:facet>
                     <h:outputText value="#{item.id}"/>
                 </p:column>
@@ -80,27 +89,27 @@
 
                 <p:column sortBy="#{item.reservationStart}" filterBy="#{item.reservationStart}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationStart}"/>
+                        <h:outputText value="#{myBundle.ListReservTitle_reservationStart}"/>
                     </f:facet>
                     <h:outputText value="#{item.reservationStart}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
 
-
-                <p:column sortBy="#{item.reservationEnd}" filterBy="#{item.reservationEnd}">
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationEnd}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.reservationEnd}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                </p:column>
-
+                <ui:remove>
+                    <p:column sortBy="#{item.reservationEnd}" filterBy="#{item.reservationEnd}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListReservTitle_reservationEnd}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.reservationEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                </ui:remove>
                 <ui:remove>
                     <p:column sortBy="#{item.accountAccountid}" filterBy="#{item.accountAccountid}">
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListReservTitle_accountAccountid}"/>
+                            <h:outputText value="#{myBundle.ListReservTitle_accountAccountid}"/>
                         </f:facet>
                         <h:outputText value="#{item.accountAccountid}"/>
                     </p:column>
@@ -108,7 +117,7 @@
                 <ui:remove>
                     <p:column sortBy="#{item.reservStatusId.reservationStatusName}" filterBy="#{item.reservStatusId.reservationStatusName}">
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListReservTitle_reservStatusId}"/>
+                            <h:outputText value="#{myBundle.ListReservTitle_reservStatusId}"/>
                         </f:facet>
                         <h:outputText value="#{item.reservStatusId.reservationStatusName}"/>
                     </p:column>
@@ -116,11 +125,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reservController.prepareCreate}" update=":ReservCreateForm" oncomplete="PF('ReservCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{bundle.View}" update=":ReservViewForm" oncomplete="PF('ReservViewDialog').show()" disabled="#{empty reservController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReservEditForm" oncomplete="PF('ReservEditDialog').show()" disabled="#{empty reservController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reservController.delete}" update=":growl,datalist" disabled="#{empty reservController.selected}">
-                <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{reservController.prepareCreate}" update=":ReservCreateForm" oncomplete="PF('ReservCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ReservViewForm" oncomplete="PF('ReservViewDialog').show()" disabled="#{empty reservController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ReservEditForm" oncomplete="PF('ReservEditDialog').show()" disabled="#{empty reservController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{reservController.delete}" update=":growl,datalist" disabled="#{empty reservController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

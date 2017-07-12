@@ -8,10 +8,10 @@
                 xmlns:pm="http://primefaces.org/mobile">
 
     <pm:page id="LicenseTypeListPage">
-        <pm:header title="#{bundle.ListLicenseTypeTitle}">
+        <pm:header title="#{myBundle.ListLicenseTypeTitle}">
             <h:form>
                 <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
-                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{bundle.Create}" update=":LicenseTypeCreatePage:LicenseTypeCreateForm" actionListener="#{licenseTypeController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:LicenseTypeCreatePage')}">
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":LicenseTypeCreatePage:LicenseTypeCreateForm" actionListener="#{licenseTypeController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:LicenseTypeCreatePage')}">
                     <f:actionListener binding="#{currentPageListener}"/>
                 </p:commandButton>
             </h:form>
@@ -38,45 +38,45 @@
                     <p:ajax event="tap"         oncomplete="document.getElementById('LicenseTypeListPage:LicenseTypeListForm:editButton').click();"/>
                     <p:ajax event="taphold"     oncomplete="document.getElementById('LicenseTypeListPage:LicenseTypeListForm:navigationMenuButton').click();"/>
 
-                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.ListLicenseTypeTitle_id}">
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListLicenseTypeTitle_id}">
                         <h:outputText value="#{item.id}"/>
                     </p:column>
 
 
-                    <p:column sortBy="#{item.licenseName}" filterBy="#{item.licenseName}" headerText="#{bundle.ListLicenseTypeTitle_licenseName}">
+                    <p:column sortBy="#{item.licenseName}" filterBy="#{item.licenseName}" headerText="#{myBundle.ListLicenseTypeTitle_licenseName}">
                         <h:outputText value="#{item.licenseName}"/>
                     </p:column>
 
 
-                    <p:column sortBy="#{item.licenseSerial}" filterBy="#{item.licenseSerial}" headerText="#{bundle.ListLicenseTypeTitle_licenseSerial}">
+                    <p:column sortBy="#{item.licenseSerial}" filterBy="#{item.licenseSerial}" headerText="#{myBundle.ListLicenseTypeTitle_licenseSerial}">
                         <h:outputText value="#{item.licenseSerial}"/>
                     </p:column>
 
 
-                    <p:column sortBy="#{item.licenseStart}" filterBy="#{item.licenseStart}" headerText="#{bundle.ListLicenseTypeTitle_licenseStart}">
+                    <p:column sortBy="#{item.licenseStart}" filterBy="#{item.licenseStart}" headerText="#{myBundle.ListLicenseTypeTitle_licenseStart}">
                         <h:outputText value="#{item.licenseStart}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:column>
 
 
-                    <p:column sortBy="#{item.licenseEnd}" filterBy="#{item.licenseEnd}" headerText="#{bundle.ListLicenseTypeTitle_licenseEnd}">
+                    <p:column sortBy="#{item.licenseEnd}" filterBy="#{item.licenseEnd}" headerText="#{myBundle.ListLicenseTypeTitle_licenseEnd}">
                         <h:outputText value="#{item.licenseEnd}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:column>
 
                 </p:dataTable>
-                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LicenseTypeEditPage:LicenseTypeEditForm" disabled="#{empty licenseTypeController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:LicenseTypeEditPage')}"/>
-                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{licenseTypeController.delete}" update=":growl,datalist" disabled="#{empty licenseTypeController.selected}">
-                    <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":LicenseTypeEditPage:LicenseTypeEditForm" disabled="#{empty licenseTypeController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:LicenseTypeEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{licenseTypeController.delete}" update=":growl,datalist" disabled="#{empty licenseTypeController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
                 </p:commandButton>
-                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{bundle.Menu}" disabled="#{empty licenseTypeController.selected}"/>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{myBundle.Menu}" disabled="#{empty licenseTypeController.selected}"/>
 
                 <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
-                    <h2>#{bundle.LicenseTypeHeading} #{bundle.Menu}</h2>
+                    <h2>#{myBundle.LicenseTypeHeading} #{myBundle.Menu}</h2>
                     <p:menu>
-                        <p:menuitem value="#{bundle.LicenseTypeMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty licenseTypeController.selected.equipmentCollection}" ajax="false">
+                        <p:menuitem value="#{myBundle.LicenseTypeMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty licenseTypeController.selected.equipmentCollection}" ajax="false">
                             <f:actionListener binding="#{currentPageActionListener}"/>
                             <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{licenseTypeController.navigateEquipmentCollection()}"/>
                         </p:menuitem>  

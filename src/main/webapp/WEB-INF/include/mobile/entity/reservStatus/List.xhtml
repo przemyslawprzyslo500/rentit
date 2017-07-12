@@ -8,10 +8,10 @@
                 xmlns:pm="http://primefaces.org/mobile">
 
     <pm:page id="ReservStatusListPage">
-        <pm:header title="#{bundle.ListReservStatusTitle}">
+        <pm:header title="#{myBundle.ListReservStatusTitle}">
             <h:form>
                 <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
-                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{bundle.Create}" update=":ReservStatusCreatePage:ReservStatusCreateForm" actionListener="#{reservStatusController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:ReservStatusCreatePage')}">
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":ReservStatusCreatePage:ReservStatusCreateForm" actionListener="#{reservStatusController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:ReservStatusCreatePage')}">
                     <f:actionListener binding="#{currentPageListener}"/>
                 </p:commandButton>
             </h:form>
@@ -38,26 +38,26 @@
                     <p:ajax event="tap"         oncomplete="document.getElementById('ReservStatusListPage:ReservStatusListForm:editButton').click();"/>
                     <p:ajax event="taphold"     oncomplete="document.getElementById('ReservStatusListPage:ReservStatusListForm:navigationMenuButton').click();"/>
 
-                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.ListReservStatusTitle_id}">
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{myBundle.ListReservStatusTitle_id}">
                         <h:outputText value="#{item.id}"/>
                     </p:column>
 
 
-                    <p:column sortBy="#{item.reservationStatusName}" filterBy="#{item.reservationStatusName}" headerText="#{bundle.ListReservStatusTitle_reservationStatusName}">
+                    <p:column sortBy="#{item.reservationStatusName}" filterBy="#{item.reservationStatusName}" headerText="#{myBundle.ListReservStatusTitle_reservationStatusName}">
                         <h:outputText value="#{item.reservationStatusName}"/>
                     </p:column>
 
                 </p:dataTable>
-                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReservStatusEditPage:ReservStatusEditForm" disabled="#{empty reservStatusController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:ReservStatusEditPage')}"/>
-                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reservStatusController.delete}" update=":growl,datalist" disabled="#{empty reservStatusController.selected}">
-                    <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ReservStatusEditPage:ReservStatusEditForm" disabled="#{empty reservStatusController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:ReservStatusEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{reservStatusController.delete}" update=":growl,datalist" disabled="#{empty reservStatusController.selected}">
+                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
                 </p:commandButton>
-                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{bundle.Menu}" disabled="#{empty reservStatusController.selected}"/>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{myBundle.Menu}" disabled="#{empty reservStatusController.selected}"/>
 
                 <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
-                    <h2>#{bundle.ReservStatusHeading} #{bundle.Menu}</h2>
+                    <h2>#{myBundle.ReservStatusHeading} #{myBundle.Menu}</h2>
                     <p:menu>
-                        <p:menuitem value="#{bundle.ReservStatusMenuItem_reservCollection}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty reservStatusController.selected.reservCollection}" ajax="false">
+                        <p:menuitem value="#{myBundle.ReservStatusMenuItem_reservCollection}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty reservStatusController.selected.reservCollection}" ajax="false">
                             <f:actionListener binding="#{currentPageActionListener}"/>
                             <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{reservStatusController.navigateReservCollection()}"/>
                         </p:menuitem>  

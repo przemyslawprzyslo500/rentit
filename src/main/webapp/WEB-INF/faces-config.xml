@@ -8,6 +8,23 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/MyBundle</base-name>
+            <var>myBundle</var>
+        </resource-bundle>
     </application>
    <managed-bean>
     <managed-bean-name>now</managed-bean-name>

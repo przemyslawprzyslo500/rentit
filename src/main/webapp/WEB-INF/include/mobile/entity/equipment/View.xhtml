@@ -8,9 +8,9 @@
                 xmlns:pm="http://primefaces.org/mobile">
 
     <pm:page id="EquipmentViewPage" lazy="true">
-        <pm:header title="#{bundle.ViewEquipmentTitle}">
+        <pm:header title="#{myBundle.ViewEquipmentTitle}">
             <h:form>
-                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:EquipmentListPage')}"/>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:EquipmentListPage')}"/>
             </h:form>
         </pm:header>
 
@@ -22,42 +22,42 @@
                     <p:outputPanel rendered="#{equipmentController.selected != null}">
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_id}"/>
-                            <h:outputText value="#{equipmentController.selected.id}" title="#{bundle.ViewEquipmentTitle_id}"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_id}"/>
+                            <h:outputText value="#{equipmentController.selected.id}" title="#{myBundle.ViewEquipmentTitle_id}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_equipmentId}"/>
-                            <h:outputText value="#{equipmentController.selected.equipmentId}" title="#{bundle.ViewEquipmentTitle_equipmentId}"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_equipmentId}"/>
+                            <h:outputText value="#{equipmentController.selected.equipmentId}" title="#{myBundle.ViewEquipmentTitle_equipmentId}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_name}"/>
-                            <h:outputText value="#{equipmentController.selected.name}" title="#{bundle.ViewEquipmentTitle_name}"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_name}"/>
+                            <h:outputText value="#{equipmentController.selected.name}" title="#{myBundle.ViewEquipmentTitle_name}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_type}"/>
-                            <h:outputText value="#{equipmentController.selected.type}" title="#{bundle.ViewEquipmentTitle_type}"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_type}"/>
+                            <h:outputText value="#{equipmentController.selected.type}" title="#{myBundle.ViewEquipmentTitle_type}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_rentPermission}"/>
-                            <h:selectBooleanCheckbox id="rentPermission" value="#{equipmentController.selected.rentPermission}" title="#{bundle.EditEquipmentTitle_rentPermission}"  disabled="true"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_rentPermission}"/>
+                            <h:selectBooleanCheckbox id="rentPermission" value="#{equipmentController.selected.rentPermission}" title="#{myBundle.EditEquipmentTitle_rentPermission}"  disabled="true"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_licenseTypeId}"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_licenseTypeId}"/>
                             <h:outputText value="#{equipmentController.selected.licenseTypeId.licenseName}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_reservationReservationId}"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_reservationReservationId}"/>
                             <h:outputText value="#{equipmentController.selected.reservationReservationId.description}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{bundle.ViewEquipmentLabel_usePlaceId}"/>
+                            <h:outputText value="#{myBundle.ViewEquipmentLabel_usePlaceId}"/>
                             <h:outputText value="#{equipmentController.selected.usePlaceId.id}"/>
                         </pm:field>
                     </p:outputPanel>

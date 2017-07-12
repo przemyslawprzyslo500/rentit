@@ -8,44 +8,41 @@
 
     <ui:composition>
 
-        <p:dialog id="AccountViewDlg" widgetVar="AccountViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewAccountTitle}" closeOnEscape="true">
+        <p:dialog id="AccountViewDlg" widgetVar="AccountViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewAccountTitle}" closeOnEscape="true">
 
             <h:form id="AccountViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{accountController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_id}"/>
-                        <h:outputText value="#{accountController.selected.id}" title="#{myBundle.ViewAccountTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_id}"/>
+                        <h:outputText value="#{accountController.selected.id}" title="#{bundle.ViewAccountTitle_id}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_accountid}"/>
-                        <h:outputText value="#{accountController.selected.accountid}" title="#{myBundle.ViewAccountTitle_accountid}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_accountFunction}"/>
+                        <h:outputText value="#{accountController.selected.accountFunction}" title="#{bundle.ViewAccountTitle_accountFunction}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_login}"/>
-                        <h:outputText value="#{accountController.selected.login}" title="#{myBundle.ViewAccountTitle_login}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_active}"/>
+                        <h:outputText value="#{accountController.selected.active}" title="#{bundle.ViewAccountTitle_active}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_password}"/>
-                        <h:outputText value="#{accountController.selected.password}" title="#{myBundle.ViewAccountTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_email}"/>
+                        <h:outputText value="#{accountController.selected.email}" title="#{bundle.ViewAccountTitle_email}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_name}"/>
-                        <h:outputText value="#{accountController.selected.name}" title="#{myBundle.ViewAccountTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_login}"/>
+                        <h:outputText value="#{accountController.selected.login}" title="#{bundle.ViewAccountTitle_login}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_surname}"/>
-                        <h:outputText value="#{accountController.selected.surname}" title="#{myBundle.ViewAccountTitle_surname}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_name}"/>
+                        <h:outputText value="#{accountController.selected.name}" title="#{bundle.ViewAccountTitle_name}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_accountFunction}"/>
-                        <h:outputText value="#{accountController.selected.accountFunction}" title="#{myBundle.ViewAccountTitle_accountFunction}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_password}"/>
+                        <h:outputText value="#{accountController.selected.password}" title="#{bundle.ViewAccountTitle_password}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_email}"/>
-                        <h:outputText value="#{accountController.selected.email}" title="#{myBundle.ViewAccountTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_phone}"/>
+                        <h:outputText value="#{accountController.selected.phone}" title="#{bundle.ViewAccountTitle_phone}"/>
 
-                        <h:outputText value="#{myBundle.ViewAccountLabel_phone}"/>
-                        <h:outputText value="#{accountController.selected.phone}" title="#{myBundle.ViewAccountTitle_phone}"/>
-
-                        <h:outputText value="#{myBundle.ViewAccountLabel_active}"/>
-                        <p:selectBooleanCheckbox id="active" value="#{accountController.selected.active}" title="#{myBundle.EditAccountTitle_active}" />
+                        <h:outputText value="#{bundle.ViewAccountLabel_surname}"/>
+                        <h:outputText value="#{accountController.selected.surname}" title="#{bundle.ViewAccountTitle_surname}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('AccountViewDialog').hide()"/>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('AccountViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

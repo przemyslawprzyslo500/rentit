@@ -9,17 +9,13 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -32,39 +28,36 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author miszcz
  */
 @Entity
-@Table(name = "LICENSE_TYPE")
+@Table(name = "LICENSE_TYPE", catalog = "", schema = "RENTIT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LicenseType.findAll", query = "SELECT l FROM LicenseType l")})
-@TableGenerator(name = "LicenseTypeIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "LicenseType", initialValue=10)
-
+    @NamedQuery(name = "LicenseType.findAll", query = "SELECT l FROM LicenseType l")
+    , @NamedQuery(name = "LicenseType.findById", query = "SELECT l FROM LicenseType l WHERE l.id = :id")
+    , @NamedQuery(name = "LicenseType.findByLicenseEnd", query = "SELECT l FROM LicenseType l WHERE l.licenseEnd = :licenseEnd")
+    , @NamedQuery(name = "LicenseType.findByLicenseName", query = "SELECT l FROM LicenseType l WHERE l.licenseName = :licenseName")
+    , @NamedQuery(name = "LicenseType.findByLicenseSerial", query = "SELECT l FROM LicenseType l WHERE l.licenseSerial = :licenseSerial")
+    , @NamedQuery(name = "LicenseType.findByLicenseStart", query = "SELECT l FROM LicenseType l WHERE l.licenseStart = :licenseStart")})
 public class LicenseType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "LicenseTypeIdGen")
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     private Integer id;
-    
-    @Size(max = 100)
-    @Column(name = "LICENSE_NAME")
-    private String licenseName;
-        
-    @Size(max = 30)
-    @Column(name = "LICENSE_SERIAL")
-    private String licenseSerial;
-    
-    @Column(name = "LICENSE_START")
-    @Temporal(TemporalType.DATE)
-    private Date licenseStart;
-    
     @Column(name = "LICENSE_END")
     @Temporal(TemporalType.DATE)
     private Date licenseEnd;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "licenseTypeId")
+    @Size(max = 255)
+    @Column(name = "LICENSE_NAME", length = 255)
+    private String licenseName;
+    @Size(max = 255)
+    @Column(name = "LICENSE_SERIAL", length = 255)
+    private String licenseSerial;
+    @Column(name = "LICENSE_START")
+    @Temporal(TemporalType.DATE)
+    private Date licenseStart;
+    @OneToMany(mappedBy = "licenseTypeId")
     private Collection<Equipment> equipmentCollection;
 
     public LicenseType() {
@@ -80,6 +73,14 @@ public class LicenseType implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Date getLicenseEnd() {
+        return licenseEnd;
+    }
+
+    public void setLicenseEnd(Date licenseEnd) {
+        this.licenseEnd = licenseEnd;
     }
 
     public String getLicenseName() {
@@ -104,14 +105,6 @@ public class LicenseType implements Serializable {
 
     public void setLicenseStart(Date licenseStart) {
         this.licenseStart = licenseStart;
-    }
-
-    public Date getLicenseEnd() {
-        return licenseEnd;
-    }
-
-    public void setLicenseEnd(Date licenseEnd) {
-        this.licenseEnd = licenseEnd;
     }
 
     @XmlTransient
@@ -145,7 +138,7 @@ public class LicenseType implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.turek.liceum.wypozyczalnia.model.LicenseType[ id=" + id + " ]";
+        return "pl.turek.liceum.rentit.model.LicenseType[ id=" + id + " ]";
     }
     
 }

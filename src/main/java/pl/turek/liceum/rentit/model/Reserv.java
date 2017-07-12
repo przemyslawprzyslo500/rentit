@@ -6,92 +6,66 @@
 package pl.turek.liceum.rentit.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author miszcz
  */
 @Entity
-@Table(name = "RESERV")
-//@XmlRootElement
+@Table(name = "RESERV", catalog = "", schema = "RENTIT")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Reserv.findAll", query = "SELECT r FROM Reserv r")})
-@TableGenerator(name = "ReservIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Reserv", initialValue=10)
-
+    @NamedQuery(name = "Reserv.findAll", query = "SELECT r FROM Reserv r")
+    , @NamedQuery(name = "Reserv.findById", query = "SELECT r FROM Reserv r WHERE r.id = :id")
+    , @NamedQuery(name = "Reserv.findByDescription", query = "SELECT r FROM Reserv r WHERE r.description = :description")
+    , @NamedQuery(name = "Reserv.findByReservationEnd", query = "SELECT r FROM Reserv r WHERE r.reservationEnd = :reservationEnd")
+    , @NamedQuery(name = "Reserv.findByReservationMadeDate", query = "SELECT r FROM Reserv r WHERE r.reservationMadeDate = :reservationMadeDate")
+    , @NamedQuery(name = "Reserv.findByReservationStart", query = "SELECT r FROM Reserv r WHERE r.reservationStart = :reservationStart")})
 public class Reserv implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "ReservIdGen")
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     private Integer id;
-    
-    @Column(name = "RESERVATION_MADE_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date reservationMadeDate;
-    
     @Size(max = 255)
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", length = 255)
     private String description;
-    
-//    @Column(name = "EQUIPMENT_ID")
-//    private Integer equipmentId;
-       
-    @Column(name = "RESERVATION_START")
-    @Temporal(TemporalType.DATE)
-    private Date reservationStart;
-    
     @Column(name = "RESERVATION_END")
     @Temporal(TemporalType.DATE)
     private Date reservationEnd;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reservationReservationId")
-    private Collection<Equipment> equipmentCollection;
-    
+    @Column(name = "RESERVATION_MADE_DATE")
+    @Temporal(TemporalType.DATE)
+    private Date reservationMadeDate;
+    @Column(name = "RESERVATION_START")
+    @Temporal(TemporalType.DATE)
+    private Date reservationStart;
     @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Account accountId;
-    
+    @JoinColumn(name = "EQUIPMENT_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private Equipment equipmentId;
     @JoinColumn(name = "RESERV_STATUS_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private ReservStatus reservStatusId;
 
-    @JoinColumn(name = "EQUIPMENT_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Equipment equipmentId;
-
-    public Equipment getEquipmentId() {
-        return equipmentId;
-    }
-
-    public void setEquipmentId(Equipment equipmentId) {
-        this.equipmentId = equipmentId;
-    }
-    
     public Reserv() {
     }
 
@@ -99,40 +73,20 @@ public class Reserv implements Serializable {
         this.id = id;
     }
 
-    public Integer getReservationId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setReservationId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Date getReservationMadeDate() {
-        return reservationMadeDate;
-    }
-
-    public void setReservationMadeDate(Date reservationMadeDate) {
-        this.reservationMadeDate = reservationMadeDate;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getReservationStart() {
-        return reservationStart;
-    }
-
-    public void setReservationStart(Date reservationStart) {
-        this.reservationStart = reservationStart;
     }
 
     public Date getReservationEnd() {
@@ -143,21 +97,36 @@ public class Reserv implements Serializable {
         this.reservationEnd = reservationEnd;
     }
 
-    @XmlTransient
-    public Collection<Equipment> getEquipmentCollection() {
-        return equipmentCollection;
+    public Date getReservationMadeDate() {
+        return reservationMadeDate;
     }
 
-    public void setEquipmentCollection(Collection<Equipment> equipmentCollection) {
-        this.equipmentCollection = equipmentCollection;
+    public void setReservationMadeDate(Date reservationMadeDate) {
+        this.reservationMadeDate = reservationMadeDate;
     }
 
-    public Account getAccountAccountid() {
+    public Date getReservationStart() {
+        return reservationStart;
+    }
+
+    public void setReservationStart(Date reservationStart) {
+        this.reservationStart = reservationStart;
+    }
+
+    public Account getAccountId() {
         return accountId;
     }
 
-    public void setAccountAccountid(Account accountId) {
+    public void setAccountId(Account accountId) {
         this.accountId = accountId;
+    }
+
+    public Equipment getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(Equipment equipmentId) {
+        this.equipmentId = equipmentId;
     }
 
     public ReservStatus getReservStatusId() {
@@ -190,7 +159,7 @@ public class Reserv implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.turek.liceum.wypozyczalnia.model.Reserv[ id=" + id + " ]";
+        return "pl.turek.liceum.rentit.model.Reserv[ id=" + id + " ]";
     }
     
 }

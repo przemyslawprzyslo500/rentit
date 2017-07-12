@@ -91,35 +91,6 @@ public abstract class AbstractFacade<T> {
         return q.getResultList();
     }
 
-    public int count(Map<String, Object> filters) {
-        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
-        javax.persistence.criteria.Root<T> entityRoot = cq.from(entityClass);
-        cq.select(cb.count(entityRoot));
-        List<javax.persistence.criteria.Predicate> predicates = getPredicates(cb, entityRoot, filters);
-        if (predicates.size() > 0) {
-            cq.where(predicates.toArray(new javax.persistence.criteria.Predicate[]{}));
-        }
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        return ((Long) q.getSingleResult()).intValue();
-    }
-
-    public T getMergedEntity(T entity) {
-        if (isEntityManaged(entity)) {
-            return entity;
-        } else {
-            return getEntityManager().merge(entity);
-        }
-    }
-
-    public boolean isEntityManaged(T entity) {
-        return getEntityManager().contains(entity);
-    }
-
-    public T findWithParents(T entity) {
-        return entity;
-    }
-
     public List<T> findRange(int first, int pageSize, Map<String, String> sortFields, Map<String, Object> filters) {
         javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
@@ -146,6 +117,19 @@ public abstract class AbstractFacade<T> {
         q.setMaxResults(pageSize);
         q.setFirstResult(first);
         return q.getResultList();
+    }
+
+    public int count(Map<String, Object> filters) {
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
+        javax.persistence.criteria.Root<T> entityRoot = cq.from(entityClass);
+        cq.select(cb.count(entityRoot));
+        List<javax.persistence.criteria.Predicate> predicates = getPredicates(cb, entityRoot, filters);
+        if (predicates.size() > 0) {
+            cq.where(predicates.toArray(new javax.persistence.criteria.Predicate[]{}));
+        }
+        javax.persistence.Query q = getEntityManager().createQuery(cq);
+        return ((Long) q.getSingleResult()).intValue();
     }
 
     private List<Predicate> getPredicates(CriteriaBuilder cb, Root<T> entityRoot, Map<String, Object> filters) {
@@ -213,5 +197,20 @@ public abstract class AbstractFacade<T> {
         return expression;
     }
 
+    public T getMergedEntity(T entity) {
+        if (isEntityManaged(entity)) {
+            return entity;
+        } else {
+            return getEntityManager().merge(entity);
+        }
+    }
+
+    public boolean isEntityManaged(T entity) {
+        return getEntityManager().contains(entity);
+    }
+
+    public T findWithParents(T entity) {
+        return entity;
+    }
     
 }

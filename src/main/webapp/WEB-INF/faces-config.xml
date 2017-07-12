@@ -7,28 +7,12 @@
         <resource-bundle>
             <base-name>/Bundle</base-name>
             <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/MyBundle</base-name>
-            <var>myBundle</var>
+            <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
         </resource-bundle>
     </application>
-   <managed-bean>
-    <managed-bean-name>now</managed-bean-name>
-    <managed-bean-class>java.util.Date</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
-  </managed-bean> 
+    <managed-bean>
+        <managed-bean-name>now</managed-bean-name>
+        <managed-bean-class>java.util.Date</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean> 
 </faces-config>

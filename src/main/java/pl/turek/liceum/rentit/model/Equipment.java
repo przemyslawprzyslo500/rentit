@@ -8,11 +8,8 @@ package pl.turek.liceum.rentit.model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,74 +17,61 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author miszcz
  */
 @Entity
-@Table(name = "EQUIPMENT")
+@Table(name = "EQUIPMENT", catalog = "", schema = "RENTIT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Equipment.findAll", query = "SELECT e FROM Equipment e")})
-@TableGenerator(name = "EquipmentIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Equipment", initialValue=10)
-
+    @NamedQuery(name = "Equipment.findAll", query = "SELECT e FROM Equipment e")
+    , @NamedQuery(name = "Equipment.findById", query = "SELECT e FROM Equipment e WHERE e.id = :id")
+    , @NamedQuery(name = "Equipment.findByName", query = "SELECT e FROM Equipment e WHERE e.name = :name")
+    , @NamedQuery(name = "Equipment.findByRentPermission", query = "SELECT e FROM Equipment e WHERE e.rentPermission = :rentPermission")
+    , @NamedQuery(name = "Equipment.findByType", query = "SELECT e FROM Equipment e WHERE e.type = :type")})
 public class Equipment implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "EquipmentIdGen")
+    @Column(name = "ID", nullable = false)
     private Integer id;
-    
-    @Size(max = 150)
-    @Column(name = "NAME")
+    @Size(max = 255)
+    @Column(name = "NAME", length = 255)
     private String name;
-    
-    @Size(max = 10)
-    @Column(name = "TYPE")
-    private String type;
-    
     @Column(name = "RENT_PERMISSION")
-    private boolean rentPermission;
-    
+    private Short rentPermission;
+    @Size(max = 255)
+    @Column(name = "TYPE", length = 255)
+    private String type;
     @JoinColumn(name = "LICENSE_TYPE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private LicenseType licenseTypeId;
-    
-    @JoinColumn(name = "RESERV_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Reserv reservationReservationId;
-    
     @JoinColumn(name = "USE_PLACE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private UsePlace usePlaceId;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "equipmentId")
+    @OneToMany(mappedBy = "equipmentId")
     private Collection<Reserv> reservCollection;
 
     public Equipment() {
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public Equipment(Integer id) {
         this.id = id;
     }
 
-    public Integer getEquipmentId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setEquipmentId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -99,20 +83,20 @@ public class Equipment implements Serializable {
         this.name = name;
     }
 
+    public Short getRentPermission() {
+        return rentPermission;
+    }
+
+    public void setRentPermission(Short rentPermission) {
+        this.rentPermission = rentPermission;
+    }
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public boolean getRentPermission() {
-        return rentPermission;
-    }
-
-    public void setRentPermission(boolean rentPermission) {
-        this.rentPermission = rentPermission;
     }
 
     public LicenseType getLicenseTypeId() {
@@ -123,20 +107,21 @@ public class Equipment implements Serializable {
         this.licenseTypeId = licenseTypeId;
     }
 
-    public Reserv getReservationReservationId() {
-        return reservationReservationId;
-    }
-
-    public void setReservationReservationId(Reserv reservationReservationId) {
-        this.reservationReservationId = reservationReservationId;
-    }
-
     public UsePlace getUsePlaceId() {
         return usePlaceId;
     }
 
     public void setUsePlaceId(UsePlace usePlaceId) {
         this.usePlaceId = usePlaceId;
+    }
+
+    @XmlTransient
+    public Collection<Reserv> getReservCollection() {
+        return reservCollection;
+    }
+
+    public void setReservCollection(Collection<Reserv> reservCollection) {
+        this.reservCollection = reservCollection;
     }
 
     @Override
@@ -161,7 +146,7 @@ public class Equipment implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.turek.liceum.wypozyczalnia.model.Equipment[ id=" + id + " ]";
+        return "pl.turek.liceum.rentit.model.Equipment[ id=" + id + " ]";
     }
     
 }

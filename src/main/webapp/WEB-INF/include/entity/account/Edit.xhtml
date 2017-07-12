@@ -7,47 +7,45 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="AccountEditDlg" widgetVar="AccountEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditAccountTitle}" closeOnEscape="true">
+        <p:dialog id="AccountEditDlg" widgetVar="AccountEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditAccountTitle}" closeOnEscape="true">
 
             <h:form id="AccountEditForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{accountController.selected != null}">
 
-                        <h:outputText value="#{myBundle.EditAccountLabel_id}"/>
-                        <h:outputText value="#{accountController.selected.id}" title="#{myBundle.EditAccountTitle_id}"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_accountid}" for="accountid" />
-                        <p:inputText id="accountid" value="#{accountController.selected.accountid}" title="#{myBundle.EditAccountTitle_accountid}"/>
+                        <h:outputLabel value="#{bundle.EditAccountLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{accountController.selected.id}" />
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_login}" for="login" />
-                        <p:inputText id="login" value="#{accountController.selected.login}" title="#{myBundle.EditAccountTitle_login}" size="32" maxlength="32"/>
+                        <p:outputLabel value="#{bundle.EditAccountLabel_accountFunction}" for="accountFunction" />
+                        <p:inputText id="accountFunction" value="#{accountController.selected.accountFunction}" title="#{bundle.EditAccountTitle_accountFunction}"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_password}" for="password" />
-                        <p:inputText id="password" value="#{accountController.selected.password}" title="#{myBundle.EditAccountTitle_password}" size="32" maxlength="32"/>
+                        <p:outputLabel value="#{bundle.EditAccountLabel_active}" for="active" />
+                        <p:inputText id="active" value="#{accountController.selected.active}" title="#{bundle.EditAccountTitle_active}"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{accountController.selected.name}" title="#{myBundle.EditAccountTitle_name}" size="64" maxlength="64"/>
+                        <p:outputLabel value="#{bundle.EditAccountLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{accountController.selected.email}" title="#{bundle.EditAccountTitle_email}" size="255" maxlength="255"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_surname}" for="surname" />
-                        <p:inputText id="surname" value="#{accountController.selected.surname}" title="#{myBundle.EditAccountTitle_surname}" size="32" maxlength="32"/>
+                        <p:outputLabel value="#{bundle.EditAccountLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{accountController.selected.login}" title="#{bundle.EditAccountTitle_login}" size="255" maxlength="255"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_accountFunction}" for="accountFunction" />
-                        <p:inputText id="accountFunction" value="#{accountController.selected.accountFunction}" title="#{myBundle.EditAccountTitle_accountFunction}"/>
+                        <p:outputLabel value="#{bundle.EditAccountLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{accountController.selected.name}" title="#{bundle.EditAccountTitle_name}" size="255" maxlength="255"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{accountController.selected.email}" title="#{myBundle.EditAccountTitle_email}" size="100" maxlength="100"/>
+                        <p:outputLabel value="#{bundle.EditAccountLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{accountController.selected.password}" title="#{bundle.EditAccountTitle_password}" size="255" maxlength="255"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_phone}" for="phone" />
-                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{myBundle.EditAccountTitle_phone}" size="32" maxlength="32"/>
+                        <p:outputLabel value="#{bundle.EditAccountLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{bundle.EditAccountTitle_phone}" size="255" maxlength="255"/>
 
-                        <p:outputLabel value="#{myBundle.EditAccountLabel_active}" for="active" />
-                        <p:selectBooleanCheckbox id="active" value="#{accountController.selected.active}" />
+                        <p:outputLabel value="#{bundle.EditAccountLabel_surname}" for="surname" />
+                        <p:inputText id="surname" value="#{accountController.selected.surname}" title="#{bundle.EditAccountTitle_surname}" size="255" maxlength="255"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{accountController.save}" value="#{myBundle.Save}" update="display,:AccountListForm:datalist,:AccountListForm:AccountDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountEditDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{accountController.save}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:AccountListForm:AccountDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountEditDialog'));">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('AccountEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('AccountEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

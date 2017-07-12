@@ -8,9 +8,9 @@
                 xmlns:pm="http://primefaces.org/mobile">
 
     <pm:page id="UsePlaceViewPage" lazy="true">
-        <pm:header title="#{myBundle.ViewUsePlaceTitle}">
+        <pm:header title="#{bundle.ViewUsePlaceTitle}">
             <h:form>
-                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UsePlaceListPage')}"/>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UsePlaceListPage')}"/>
             </h:form>
         </pm:header>
 
@@ -22,23 +22,23 @@
                     <p:outputPanel rendered="#{usePlaceController.selected != null}">
 
                         <pm:field>
-                            <h:outputText value="#{myBundle.ViewUsePlaceLabel_id}"/>
-                            <h:outputText value="#{usePlaceController.selected.id}" title="#{myBundle.ViewUsePlaceTitle_id}"/>
+                            <h:outputText value="#{bundle.ViewUsePlaceLabel_id}"/>
+                            <h:outputText value="#{usePlaceController.selected.id}" title="#{bundle.ViewUsePlaceTitle_id}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{myBundle.ViewUsePlaceLabel_building}"/>
-                            <h:outputText value="#{usePlaceController.selected.building}" title="#{myBundle.ViewUsePlaceTitle_building}"/>
+                            <h:outputText value="#{bundle.ViewUsePlaceLabel_building}"/>
+                            <h:outputText value="#{usePlaceController.selected.building}" title="#{bundle.ViewUsePlaceTitle_building}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{myBundle.ViewUsePlaceLabel_floor}"/>
-                            <h:outputText value="#{usePlaceController.selected.floor}" title="#{myBundle.ViewUsePlaceTitle_floor}"/>
+                            <h:outputText value="#{bundle.ViewUsePlaceLabel_floor}"/>
+                            <h:outputText value="#{usePlaceController.selected.floor}" title="#{bundle.ViewUsePlaceTitle_floor}"/>
                         </pm:field>
 
                         <pm:field>
-                            <h:outputText value="#{myBundle.ViewUsePlaceLabel_place}"/>
-                            <h:outputText value="#{usePlaceController.selected.place}" title="#{myBundle.ViewUsePlaceTitle_place}"/>
+                            <h:outputText value="#{bundle.ViewUsePlaceLabel_place}"/>
+                            <h:outputText value="#{usePlaceController.selected.place}" title="#{bundle.ViewUsePlaceTitle_place}"/>
                         </pm:field>
                     </p:outputPanel>
                 </h:panelGroup>

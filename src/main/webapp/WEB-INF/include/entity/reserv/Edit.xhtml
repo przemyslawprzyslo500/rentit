@@ -7,60 +7,66 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="ReservEditDlg" widgetVar="ReservEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditReservTitle}" closeOnEscape="true">
+        <p:dialog id="ReservEditDlg" widgetVar="ReservEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditReservTitle}" closeOnEscape="true">
 
             <h:form id="ReservEditForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{reservController.selected != null}">
 
-                                <p:outputLabel value="#{myBundle.EditReservLabel_equipmentId}" for="equipmentId" />
-                        <p:selectOneMenu id="equipmentId" value="#{reservController.selected.equipmentId}" required="true" requiredMessage="#{myBundle.EditReservRequiredMessage_equipmentId}" converter="equipmentConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+
+                        <h:outputLabel value="#{bundle.EditReservLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{reservController.selected.id}" />
+
+                        <p:outputLabel value="#{bundle.EditReservLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{reservController.selected.description}" title="#{bundle.EditReservTitle_description}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{bundle.EditReservLabel_reservationEnd}" for="reservationEnd" />
+                        <p:calendar id="reservationEnd" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationEnd}" title="#{bundle.EditReservTitle_reservationEnd}"  showOn="button"/>
+
+                        <p:outputLabel value="#{bundle.EditReservLabel_reservationMadeDate}" for="reservationMadeDate" />
+                        <p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationMadeDate}" title="#{bundle.EditReservTitle_reservationMadeDate}"  showOn="button"/>
+
+                        <p:outputLabel value="#{bundle.EditReservLabel_reservationStart}" for="reservationStart" />
+                        <p:calendar id="reservationStart" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationStart}" title="#{bundle.EditReservTitle_reservationStart}"  showOn="button"/>
+
+                        <p:outputLabel value="#{bundle.EditReservLabel_accountId}" for="accountId" />
+                        <p:selectOneMenu id="accountId" value="#{reservController.selected.accountId}"  converter="accountConverter">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountController.items}"
+                                           var="accountIdItem"
+                                           itemValue="#{accountIdItem}"
+                                           itemLabel="#{accountIdItem.name.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.EditReservLabel_equipmentId}" for="equipmentId" />
+                        <p:selectOneMenu id="equipmentId" value="#{reservController.selected.equipmentId}"  converter="equipmentConverter">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{equipmentController.items}"
                                            var="equipmentIdItem"
                                            itemValue="#{equipmentIdItem}"
                                            itemLabel="#{equipmentIdItem.name.toString()}"
-                            />
-                            
+                                           />
+
                         </p:selectOneMenu>
 
-                                <p:outputLabel value="#{myBundle.EditReservLabel_reservationId}" for="reservationId" />
-                        <p:inputText id="reservationId" value="#{reservController.selected.reservationId}" title="#{myBundle.EditReservTitle_reservationId}"/>
-
-                                <p:outputLabel value="#{myBundle.EditReservLabel_reservationMadeDate}" for="reservationMadeDate" />
-                        <p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationMadeDate}" title="#{myBundle.EditReservTitle_reservationMadeDate}"  showOn="button"/>
-
-                                <p:outputLabel value="#{myBundle.EditReservLabel_description}" for="description" />
-                        <p:inputText id="description" value="#{reservController.selected.description}" title="#{myBundle.EditReservTitle_description}" size="255" maxlength="255"/>
-
-                        <h:outputText value="#{myBundle.EditReservLabel_id}"/>
-                        <h:outputText value="#{reservController.selected.id}" title="#{myBundle.EditReservTitle_id}"/>
-
-                                <p:outputLabel value="#{myBundle.EditReservLabel_reservationStart}" for="reservationStart" />
-                        <p:calendar id="reservationStart" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationStart}" title="#{myBundle.EditReservTitle_reservationStart}"  showOn="button"/>
-
-                                <p:outputLabel value="#{myBundle.EditReservLabel_reservationEnd}" for="reservationEnd" />
-                        <p:calendar id="reservationEnd" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationEnd}" title="#{myBundle.EditReservTitle_reservationEnd}"  showOn="button"/>
-
-                                <p:outputLabel value="#{myBundle.EditReservLabel_accountAccountid}" for="accountAccountid" />
-                        <p:inputText id="accountAccountid" value="#{reservController.selected.accountAccountid}" title="#{myBundle.EditReservTitle_accountAccountid}"/>
-
-                                <p:outputLabel value="#{myBundle.EditReservLabel_reservStatusId}" for="reservStatusId" />
-                        <p:selectOneMenu id="reservStatusId" value="#{reservController.selected.reservStatusId}" required="true" requiredMessage="#{myBundle.EditReservRequiredMessage_reservStatusId}" converter="reservStatusConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                        <p:outputLabel value="#{bundle.EditReservLabel_reservStatusId}" for="reservStatusId" />
+                        <p:selectOneMenu id="reservStatusId" value="#{reservController.selected.reservStatusId}"  converter="reservStatusConverter">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{reservStatusController.items}"
                                            var="reservStatusIdItem"
                                            itemValue="#{reservStatusIdItem}"
                                            itemLabel="#{reservStatusIdItem.reservationStatusName.toString()}"
-                            />
-                            
+                                           />
+
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{reservController.save}" value="#{myBundle.Save}" update="display,:ReservListForm:datalist,:ReservListForm:ReservDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ReservEditDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{reservController.save}" value="#{bundle.Save}" update="display,:ReservListForm:datalist,:ReservListForm:ReservDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ReservEditDialog'));">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ReservEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('ReservEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

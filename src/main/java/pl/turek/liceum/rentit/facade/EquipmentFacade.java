@@ -5,6 +5,7 @@
  */
 package pl.turek.liceum.rentit.facade;
 
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,8 +15,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import pl.turek.liceum.rentit.model.LicenseType;
-import pl.turek.liceum.rentit.model.Reserv;
 import pl.turek.liceum.rentit.model.UsePlace;
+import pl.turek.liceum.rentit.model.Reserv;
 
 /**
  *
@@ -48,18 +49,6 @@ public class EquipmentFacade extends AbstractFacade<Equipment> {
         return this.getMergedEntity(entity).getLicenseTypeId();
     }
 
-    public boolean isReservationReservationIdEmpty(Equipment entity) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        Root<Equipment> equipment = cq.from(Equipment.class);
-        cq.select(cb.literal(1L)).distinct(true).where(cb.equal(equipment, entity), cb.isNotNull(equipment.get(Equipment_.reservationReservationId)));
-        return em.createQuery(cq).getResultList().isEmpty();
-    }
-
-    public Reserv findReservationReservationId(Equipment entity) {
-        return this.getMergedEntity(entity).getReservationReservationId();
-    }
-
     public boolean isUsePlaceIdEmpty(Equipment entity) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -70,6 +59,21 @@ public class EquipmentFacade extends AbstractFacade<Equipment> {
 
     public UsePlace findUsePlaceId(Equipment entity) {
         return this.getMergedEntity(entity).getUsePlaceId();
+    }
+
+    public boolean isReservCollectionEmpty(Equipment entity) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Equipment> equipment = cq.from(Equipment.class);
+        cq.select(cb.literal(1L)).distinct(true).where(cb.equal(equipment, entity), cb.isNotEmpty(equipment.get(Equipment_.reservCollection)));
+        return em.createQuery(cq).getResultList().isEmpty();
+    }
+
+    public Collection<Reserv> findReservCollection(Equipment entity) {
+        Equipment mergedEntity = this.getMergedEntity(entity);
+        Collection<Reserv> reservCollection = mergedEntity.getReservCollection();
+        reservCollection.size();
+        return reservCollection;
     }
     
 }

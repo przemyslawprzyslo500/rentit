@@ -8,17 +8,13 @@ package pl.turek.liceum.rentit.model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,35 +25,31 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author miszcz
  */
 @Entity
-@Table(name = "USE_PLACE")
+@Table(name = "USE_PLACE", catalog = "", schema = "RENTIT")
 @XmlRootElement
 @NamedQueries({
-@NamedQuery(name = "UsePlace.findAll", query = "SELECT u FROM UsePlace u")})
-@TableGenerator(name = "UsePlaceIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "UsePlace", initialValue=10)
-
+    @NamedQuery(name = "UsePlace.findAll", query = "SELECT u FROM UsePlace u")
+    , @NamedQuery(name = "UsePlace.findById", query = "SELECT u FROM UsePlace u WHERE u.id = :id")
+    , @NamedQuery(name = "UsePlace.findByBuilding", query = "SELECT u FROM UsePlace u WHERE u.building = :building")
+    , @NamedQuery(name = "UsePlace.findByFloor", query = "SELECT u FROM UsePlace u WHERE u.floor = :floor")
+    , @NamedQuery(name = "UsePlace.findByPlace", query = "SELECT u FROM UsePlace u WHERE u.place = :place")})
 public class UsePlace implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "UsePlaceIdGen")
-
+    @Column(name = "ID", nullable = false)
     private Integer id;
-    
-    @Size(max = 16)
-    @Column(name = "BUILDING")
+    @Size(max = 255)
+    @Column(name = "BUILDING", length = 255)
     private String building;
-    
     @Column(name = "FLOOR")
     private Integer floor;
-    
     @Size(max = 255)
-    @Column(name = "PLACE")
+    @Column(name = "PLACE", length = 255)
     private String place;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usePlaceId")
+    @OneToMany(mappedBy = "usePlaceId")
     private Collection<Equipment> equipmentCollection;
 
     public UsePlace() {
@@ -130,7 +122,7 @@ public class UsePlace implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.turek.liceum.wypozyczalnia.model.UsePlace[ id=" + id + " ]";
+        return "pl.turek.liceum.rentit.model.UsePlace[ id=" + id + " ]";
     }
     
 }

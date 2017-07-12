@@ -1,10 +1,13 @@
 package pl.turek.liceum.rentit.controller;
 
 import pl.turek.liceum.rentit.model.Equipment;
+import pl.turek.liceum.rentit.model.Reserv;
+import java.util.Collection;
 import pl.turek.liceum.rentit.facade.EquipmentFacade;
 import pl.turek.liceum.rentit.controller.util.MobilePageController;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
@@ -15,11 +18,12 @@ public class EquipmentController extends AbstractController<Equipment> {
     @Inject
     private LicenseTypeController licenseTypeIdController;
     @Inject
-    private ReservController reservationReservationIdController;
-    @Inject
     private UsePlaceController usePlaceIdController;
     @Inject
     private MobilePageController mobilePageController;
+
+    // Flags to indicate if child collections are empty
+    private boolean isReservCollectionEmpty;
 
     public EquipmentController() {
         // Inform the Abstract parent controller of the concrete Equipment Entity
@@ -31,8 +35,15 @@ public class EquipmentController extends AbstractController<Equipment> {
      */
     public void resetParents() {
         licenseTypeIdController.setSelected(null);
-        reservationReservationIdController.setSelected(null);
         usePlaceIdController.setSelected(null);
+    }
+
+    /**
+     * Set the "is[ChildCollection]Empty" property for OneToMany fields.
+     */
+    @Override
+    protected void setChildrenEmptyFlags() {
+        this.setIsReservCollectionEmpty();
     }
 
     /**
@@ -49,19 +60,6 @@ public class EquipmentController extends AbstractController<Equipment> {
     }
 
     /**
-     * Sets the "selected" attribute of the Reserv controller in order to
-     * display its data in its View dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    public void prepareReservationReservationId(ActionEvent event) {
-        Equipment selected = this.getSelected();
-        if (selected != null && reservationReservationIdController.getSelected() == null) {
-            reservationReservationIdController.setSelected(selected.getReservationReservationId());
-        }
-    }
-
-    /**
      * Sets the "selected" attribute of the UsePlace controller in order to
      * display its data in its View dialog.
      *
@@ -72,6 +70,36 @@ public class EquipmentController extends AbstractController<Equipment> {
         if (selected != null && usePlaceIdController.getSelected() == null) {
             usePlaceIdController.setSelected(selected.getUsePlaceId());
         }
+    }
+
+    public boolean getIsReservCollectionEmpty() {
+        return this.isReservCollectionEmpty;
+    }
+
+    private void setIsReservCollectionEmpty() {
+        Equipment selected = this.getSelected();
+        if (selected != null) {
+            EquipmentFacade ejbFacade = (EquipmentFacade) this.getFacade();
+            this.isReservCollectionEmpty = ejbFacade.isReservCollectionEmpty(selected);
+        } else {
+            this.isReservCollectionEmpty = true;
+        }
+    }
+
+    /**
+     * Sets the "items" attribute with a collection of Reserv entities that are
+     * retrieved from Equipment and returns the navigation outcome.
+     *
+     * @return navigation outcome for Reserv page
+     */
+    public String navigateReservCollection() {
+        Equipment selected = this.getSelected();
+        if (selected != null) {
+            EquipmentFacade ejbFacade = (EquipmentFacade) this.getFacade();
+            Collection<Reserv> selectedReservCollection = ejbFacade.findReservCollection(selected);
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Reserv_items", selectedReservCollection);
+        }
+        return this.mobilePageController.getMobilePagesPrefix() + "/app/reserv/index";
     }
 
 }

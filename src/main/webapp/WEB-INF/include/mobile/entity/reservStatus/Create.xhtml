@@ -8,9 +8,9 @@
                 xmlns:pm="http://primefaces.org/mobile">
 
     <pm:page id="ReservStatusCreatePage" lazy="true">
-        <pm:header title="#{myBundle.CreateReservStatusTitle}">
+        <pm:header title="#{bundle.CreateReservStatusTitle}">
             <h:form>
-                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ReservStatusListPage')}"/>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ReservStatusListPage')}"/>
             </h:form>
         </pm:header>
 
@@ -22,12 +22,17 @@
                     <p:outputPanel>
 
                         <pm:field>
-                            <p:outputLabel value="#{myBundle.CreateReservStatusLabel_reservationStatusName}" for="reservationStatusName" />
-                            <p:inputText id="reservationStatusName" value="#{reservStatusController.selected.reservationStatusName}" title="#{myBundle.CreateReservStatusTitle_reservationStatusName}" size="20" maxlength="20"/>
+                            <p:outputLabel value="#{bundle.CreateReservStatusLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{reservStatusController.selected.id}" title="#{bundle.CreateReservStatusTitle_id}" required="true" requiredMessage="#{bundle.CreateReservStatusRequiredMessage_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.CreateReservStatusLabel_reservationStatusName}" for="reservationStatusName" />
+                            <p:inputText id="reservationStatusName" value="#{reservStatusController.selected.reservationStatusName}" title="#{bundle.CreateReservStatusTitle_reservationStatusName}" size="255" maxlength="255"/>
                         </pm:field>
                     </p:outputPanel>
-                    <p:commandButton actionListener="#{reservStatusController.saveNew}" value="#{myBundle.Save}" update="display,:ReservStatusListPage:ReservStatusListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:ReservStatusListPage')}">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{reservStatusController.saveNew}" value="#{bundle.Save}" update="display,:ReservStatusListPage:ReservStatusListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:ReservStatusListPage')}">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
                 </h:panelGroup>

@@ -76,7 +76,7 @@ public class Account implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Collection<Reserv> reservCollection;
-
+   
     public Account() {
     }
 
@@ -166,14 +166,14 @@ public class Account implements Serializable {
         this.active = active;
     }
 
-    @XmlTransient
-    public Collection<Reserv> getReservCollection() {
-        return reservCollection;
-    }
-
-    public void setReservCollection(Collection<Reserv> reservCollection) {
-        this.reservCollection = reservCollection;
-    }
+//    @XmlTransient
+//    public Collection<Reserv> getReservCollection() {
+//        return reservCollection;
+//    }
+//
+//    public void setReservCollection(Collection<Reserv> reservCollection) {
+//        this.reservCollection = reservCollection;
+//    }
 
     @Override
     public int hashCode() {
@@ -198,6 +198,10 @@ public class Account implements Serializable {
     @Override
     public String toString() {
         return "pl.turek.liceum.wypozyczalnia.model.Account[ id=" + id + " ]";
+    }
+
+    public void size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

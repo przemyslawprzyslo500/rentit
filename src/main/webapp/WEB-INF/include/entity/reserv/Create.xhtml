@@ -25,11 +25,12 @@
                         <p:calendar id="reservationEnd" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationEnd}" title="#{bundle.CreateReservTitle_reservationEnd}"  showOn="button"/>
 
                         <p:outputLabel value="#{bundle.CreateReservLabel_reservationMadeDate}" for="reservationMadeDate" />
-                        <p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationMadeDate}" title="#{bundle.CreateReservTitle_reservationMadeDate}"  showOn="button"/>
-
+                        <!--<p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationMadeDate}" title="#{bundle.CreateReservTitle_reservationMadeDate}"  showOn="button"/>-->
+                        <!--<p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{currentDate}" title="#{bundle.CreateReservTitle_reservationMadeDate}"  showOn="button"/>-->
+                        <p:outputLabel id="reservationMadeDate" value="#{currentDate}" title="#{bundle.CreateReservTitle_reservationMadeDate}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateReservLabel_reservationStart}" for="reservationStart" />
-                        <p:calendar id="reservationStart" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationStart}" title="#{bundle.CreateReservTitle_reservationStart}"  showOn="button"/>
-
+                        <p:calendar id="reservationStart" pattern="MM/dd/yyyy" required="true" requiredMessage="#{bundle.CreateReservRequiredMessage_date}" value="#{reservController.selected.reservationStart}" title="#{bundle.CreateReservTitle_reservationStart}"  showOn="button" />
                         <p:outputLabel value="#{bundle.CreateReservLabel_accountId}" for="accountId" />
                         <p:selectOneMenu id="accountId" value="#{reservController.selected.accountId}"  converter="accountConverter">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

@@ -11,11 +11,14 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -29,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "LICENSE_TYPE", catalog = "", schema = "RENTIT")
+@TableGenerator(name = "LicenseTypeIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "LicenseType", initialValue=10)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "LicenseType.findAll", query = "SELECT l FROM LicenseType l")
@@ -44,6 +48,7 @@ public class LicenseType implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "LicenseTypeIdGen")
     private Integer id;
     @Column(name = "LICENSE_END")
     @Temporal(TemporalType.DATE)

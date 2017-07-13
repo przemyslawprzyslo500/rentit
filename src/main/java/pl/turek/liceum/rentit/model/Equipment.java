@@ -49,17 +49,17 @@ public class Equipment implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "EquipmentIdGen")
     private Integer id;
     @Size(max = 255)
-    @Column(name = "NAME", length = 255)
+    @Column(name = "NAME", length = 255, nullable = false)
     private String name;
-    @Column(name = "RENT_PERMISSION")
+    @Column(name = "RENT_PERMISSION", nullable = false)
     private Short rentPermission;
     @Size(max = 255)
-    @Column(name = "TYPE", length = 255)
+    @Column(name = "TYPE", length = 255, nullable = false)
     private String type;
-    @JoinColumn(name = "LICENSE_TYPE_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "LICENSE_TYPE_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private LicenseType licenseTypeId;
-    @JoinColumn(name = "USE_PLACE_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "USE_PLACE_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private UsePlace usePlaceId;
     @OneToMany(mappedBy = "equipmentId")

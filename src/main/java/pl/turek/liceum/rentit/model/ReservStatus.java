@@ -40,7 +40,7 @@ public class ReservStatus implements Serializable {
     @Column(name = "ID", nullable = false)
     private Integer id;
     @Size(max = 255)
-    @Column(name = "RESERVATION_STATUS_NAME", length = 255)
+    @Column(name = "RESERVATION_STATUS_NAME", length = 255, nullable = false)
     private String reservationStatusName;
     @OneToMany(mappedBy = "reservStatusId")
     private Collection<Reserv> reservCollection;

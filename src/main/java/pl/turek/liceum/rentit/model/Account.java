@@ -51,7 +51,7 @@ public class Account implements Serializable {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "AccountIdGen")
     private Integer id;
-    @Column(name = "ACCOUNT_FUNCTION")
+    @Column(name = "ACCOUNT_FUNCTION", nullable = false)
     private Character accountFunction;
     @Column(name = "ACTIVE")
     private Short active;
@@ -66,14 +66,14 @@ public class Account implements Serializable {
     @Column(name = "NAME", length = 255, nullable = false)
     private String name;
     @Size(max = 255)
-    @Column(name = "PASSWORD", length = 255)
+    @Column(name = "PASSWORD", length = 255, nullable = false)
     private String password;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Size(max = 255)
-    @Column(name = "PHONE", length = 255)
+    @Column(name = "PHONE", length = 255, nullable = false)
     private String phone;
     @Size(max = 255)
-    @Column(name = "SURNAME", length = 255)
+    @Column(name = "SURNAME", length = 255, nullable = false)
     private String surname;
     @OneToMany(mappedBy = "accountId")
     private Collection<Reserv> reservCollection;

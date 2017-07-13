@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "LICENSE_TYPE", catalog = "", schema = "RENTIT")
-@TableGenerator(name = "LicenseTypeIdGen", table = "GENERATOR_LICENSETYPE", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "LicenseType", allocationSize = 1,initialValue=10)
+@TableGenerator(name = "LicenseTypeIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "LicenseType", allocationSize = 1,initialValue=10)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "LicenseType.findAll", query = "SELECT l FROM LicenseType l")
@@ -50,14 +50,14 @@ public class LicenseType implements Serializable {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "LicenseTypeIdGen")
     private Integer id;
-    @Column(name = "LICENSE_END")
+    @Column(name = "LICENSE_END", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date licenseEnd;
     @Size(max = 255)
-    @Column(name = "LICENSE_NAME", length = 255)
+    @Column(name = "LICENSE_NAME", length = 255, nullable = true)
     private String licenseName;
     @Size(max = 255)
-    @Column(name = "LICENSE_SERIAL", length = 255)
+    @Column(name = "LICENSE_SERIAL", length = 255, nullable = false)
     private String licenseSerial;
     @Column(name = "LICENSE_START")
     @Temporal(TemporalType.DATE)

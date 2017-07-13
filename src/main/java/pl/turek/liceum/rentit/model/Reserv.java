@@ -52,22 +52,22 @@ public class Reserv implements Serializable {
     @Size(max = 255)
     @Column(name = "DESCRIPTION", length = 255)
     private String description;
-    @Column(name = "RESERVATION_END")
+    @Column(name = "RESERVATION_END", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date reservationEnd;
-    @Column(name = "RESERVATION_MADE_DATE")
+    @Column(name = "RESERVATION_MADE_DATE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date reservationMadeDate;
-    @Column(name = "RESERVATION_START")
+    @Column(name = "RESERVATION_START", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date reservationStart;
-    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private Account accountId;
-    @JoinColumn(name = "EQUIPMENT_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "EQUIPMENT_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private Equipment equipmentId;
-    @JoinColumn(name = "RESERV_STATUS_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "RESERV_STATUS_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private ReservStatus reservStatusId;
 

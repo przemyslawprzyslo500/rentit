@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "USE_PLACE", catalog = "", schema = "RENTIT")
-@TableGenerator(name = "UsePlaceIdGen", table = "GENERATOR_USEPLACE", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "UsePlace", allocationSize = 1 ,initialValue=10)
+@TableGenerator(name = "UsePlaceIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "UsePlace", allocationSize = 1 ,initialValue=10)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UsePlace.findAll", query = "SELECT u FROM UsePlace u")
@@ -47,9 +47,9 @@ public class UsePlace implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "UsePlaceIdGen")
     private Integer id;
     @Size(max = 255)
-    @Column(name = "BUILDING", length = 255)
+    @Column(name = "BUILDING", length = 255, nullable = false)
     private String building;
-    @Column(name = "FLOOR")
+    @Column(name = "FLOOR", nullable = false)
     private Integer floor;
     @Size(max = 255)
     @Column(name = "PLACE", length = 255)

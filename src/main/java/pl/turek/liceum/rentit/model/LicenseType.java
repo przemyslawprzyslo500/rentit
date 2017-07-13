@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "LICENSE_TYPE", catalog = "", schema = "RENTIT")
-@TableGenerator(name = "LicenseTypeIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "LicenseType", initialValue=10)
+@TableGenerator(name = "LicenseTypeIdGen", table = "GENERATOR_LICENSETYPE", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "LicenseType", allocationSize = 1,initialValue=10)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "LicenseType.findAll", query = "SELECT l FROM LicenseType l")

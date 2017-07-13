@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "RESERV", catalog = "", schema = "RENTIT")
-@TableGenerator(name = "ReservIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Reserv", initialValue=10)
+@TableGenerator(name = "ReservIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Reserv", allocationSize = 1, initialValue=10)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Reserv.findAll", query = "SELECT r FROM Reserv r")

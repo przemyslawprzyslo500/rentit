@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ACCOUNT", catalog = "", schema = "RENTIT")
-@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account", initialValue=10)
+@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account",allocationSize = 1, initialValue=10)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
@@ -60,10 +60,10 @@ public class Account implements Serializable {
     @Column(name = "EMAIL", length = 255)
     private String email;
     @Size(max = 255)
-    @Column(name = "LOGIN", length = 255)
+    @Column(name = "LOGIN", length = 255, nullable = false)
     private String login;
     @Size(max = 255)
-    @Column(name = "NAME", length = 255)
+    @Column(name = "NAME", length = 255, nullable = false)
     private String name;
     @Size(max = 255)
     @Column(name = "PASSWORD", length = 255)

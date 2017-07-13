@@ -28,10 +28,10 @@
                         <p:inputText id="email" value="#{accountController.selected.email}" title="#{bundle.CreateAccountTitle_email}" size="255" maxlength="255"/>
 
                         <p:outputLabel value="#{bundle.CreateAccountLabel_login}" for="login" />
-                        <p:inputText id="login" value="#{accountController.selected.login}" title="#{bundle.CreateAccountTitle_login}" size="255" maxlength="255"/>
+                        <p:inputText id="login" required="true" value="#{accountController.selected.login}" title="#{bundle.CreateAccountTitle_login}" size="255" maxlength="255"/>
 
                         <p:outputLabel value="#{bundle.CreateAccountLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{accountController.selected.name}" title="#{bundle.CreateAccountTitle_name}" size="255" maxlength="255"/>
+                        <p:inputText id="name" required="true" value="#{accountController.selected.name}" title="#{bundle.CreateAccountTitle_name}" size="255" maxlength="255"/>
 
                         <p:outputLabel value="#{bundle.CreateAccountLabel_password}" for="password" />
                         <p:inputText id="password" value="#{accountController.selected.password}" title="#{bundle.CreateAccountTitle_password}" size="255" maxlength="255"/>
